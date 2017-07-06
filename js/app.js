@@ -2,19 +2,25 @@
 
 var cartApp = angular.module('cartApp',[
 	'ui.router',
-	'cartApp.home'
+	'cartApp.home',
+	'cartApp.header',
+	'cartApp.signup'
 ]);
 
 
 
 
-angular.module('cartApp').config(['$UrlRouterProvider', '$stateProvider', '$locationProvider',function ($UrlRouterProvider, $stateProvider, $locationProvider){
+angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$locationProvider',function ($urlRouterProvider, $stateProvider, $locationProvider){
 
 	$stateProvider.state('home',{
 		url : '/home',
-		templateUrl : 'modules/home/home.html',
+		templateUrl : 'modules/home/view/home.html',
 		controller : 'HomeController'
+	}).state('signup',{
+		utl : '/signup',
+		templateUrl : 'modules/signup/view/signup.html',
+		controller : 'SignupController'
 	});
-	$UrlRouterProvider.otherwise('home');
+	$urlRouterProvider.otherwise('home');/**/
 
 }]);
