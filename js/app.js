@@ -8,13 +8,13 @@ var cartApp = angular.module('cartApp',[
 
 
 
-cartApp.config(['$UrlRouterProvider', '$stateProvider', '$locationProvider'],function($UrlRouterProvider, $stateProvider, $locationProvider){
+angular.module('cartApp').config(['$UrlRouterProvider', '$stateProvider', '$locationProvider',function ($UrlRouterProvider, $stateProvider, $locationProvider){
 
 	$stateProvider.state('home',{
 		url : '/home',
 		templateUrl : 'modules/home/home.html',
-		coltroller : 'HomeController'
+		controller : 'HomeController'
 	});
 	$UrlRouterProvider.otherwise('home');
 
-});
+}]);
