@@ -4,7 +4,8 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 
 	var productsObj = {
 		productGetFn : productGetFn,
-		productGetArray : []
+		productGetArray : [],
+		getProCatIdFn : getProCatIdFn
 	};
 
 	function productGetFn(){
@@ -20,6 +21,10 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 			});
 
 		return defer.promise;
+	}
+
+	function getProCatIdFn(CatId){
+		console.log('product category is from service: '+CatId);
 	}
 
 

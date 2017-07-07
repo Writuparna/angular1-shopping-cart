@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cartApp.home.controller', []).controller('HomeController', ['$scope','productsFactory',function($scope,productsFactory){
+angular.module('cartApp.home.controller', []).controller('HomeController', ['$scope','productsFactory','$state',function($scope,productsFactory,$state){
 
 	$scope.cartAry = [];
 	$scope.sameCatgAry = [];
@@ -34,7 +34,10 @@ angular.module('cartApp.home.controller', []).controller('HomeController', ['$sc
 		console.log(JSON.stringify($scope.sameCatgAry));	
 	}
 	$scope.catgoryList = function($index){
+		$scope.proCatgId = $scope.sameCatgAry[$index].p_catg_id;
 		console.log('category list:'+ $scope.sameCatgAry[$index].p_catg_id);
+		productsFactory.getProCatIdFn($scope.proCatgId);
+		$state.go('productlist');
 	}
 
 }]);

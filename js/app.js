@@ -6,7 +6,8 @@ var cartApp = angular.module('cartApp',[
 	'cartApp.home',
 	'cartApp.header',
 	'cartApp.signup',
-	'cartApp.service'
+	'cartApp.service',
+	'cartApp.productlist'
 ]);
 
 
