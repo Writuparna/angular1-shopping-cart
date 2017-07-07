@@ -5,7 +5,10 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 	var productsObj = {
 		productGetFn : productGetFn,
 		productGetArray : [],
-		getProCatIdFn : getProCatIdFn
+		setProCatIdFn : setProCatIdFn,
+		getProCatIdFn : getProCatIdFn,
+		setProIdFn : setProIdFn,
+		getProIdFn : getProIdFn
 	};
 
 	function productGetFn(){
@@ -23,9 +26,29 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 		return defer.promise;
 	}
 
-	function getProCatIdFn(CatId){
-		console.log('product category is from service: '+CatId);
+	/* to get same category products*/
+
+	function setProCatIdFn(CatId){
+		productsObj.singleCatIdValue = CatId;
+		console.log('product category is from service: '+productsObj.singleCatIdValue);
 	}
+	function getProCatIdFn(){
+		return productsObj.singleCatIdValue;
+	}
+
+
+	/*to get single product detail*/
+
+	function setProIdFn(proId){
+		productsObj.singleProId = proId;
+		//console.log('sigle product detail: '+ productsObj.singleProId);
+	}
+	function getProIdFn(){
+		console.log('sigle product detail: '+ productsObj.singleProId);
+		return productsObj.singleProId;
+	}
+
+
 
 
 	return productsObj;

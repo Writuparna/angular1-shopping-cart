@@ -7,7 +7,8 @@ var cartApp = angular.module('cartApp',[
 	'cartApp.header',
 	'cartApp.signup',
 	'cartApp.service',
-	'cartApp.productlist'
+	'cartApp.productlist',
+	'cartApp.productdetail'
 ]);
 
 
@@ -23,6 +24,14 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 		url : '/signup',
 		templateUrl : 'modules/signup/view/signup.html',
 		controller : 'SignupController'
+	}).state('productlist',{
+		url: '/productlist',
+		templateUrl: 'modules/product-list/view/productlist.html',
+		controller: 'ProductlistController'
+	}).state('productdetail',{
+		url : '/productdetail',
+		templateUrl : 'modules/product-detail/view/productdetail.html',
+		controller : 'ProductdetailController'
 	});
 	/*$urlRouterProvider.otherwise('home');*/
 
