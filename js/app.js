@@ -1,10 +1,12 @@
 'use strict';
 
 var cartApp = angular.module('cartApp',[
+    'ui',
 	'ui.router',
 	'cartApp.home',
 	'cartApp.header',
-	'cartApp.signup'
+	'cartApp.signup',
+	'cartApp.service'
 ]);
 
 
@@ -17,10 +19,10 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 		templateUrl : 'modules/home/view/home.html',
 		controller : 'HomeController'
 	}).state('signup',{
-		utl : '/signup',
+		url : '/signup',
 		templateUrl : 'modules/signup/view/signup.html',
 		controller : 'SignupController'
 	});
-	$urlRouterProvider.otherwise('home');/**/
+	/*$urlRouterProvider.otherwise('home');*/
 
 }]);

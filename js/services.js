@@ -1,9 +1,29 @@
 'use strict';
 
-/* Services */
+angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',function($q,$http){
+
+	var productsObj = {
+		productGetFn : productGetFn,
+		productGetArray : []
+	};
+
+	function productGetFn(){
+
+		var defer = $q.defer();
+
+		$http.get('data/cart.json')
+			.success(function(data){
+				productsObj.productGetArray = data;
+				defer.resolve(data)
+			}).error(function(){
+				defer.reject('data can\'t be retained');
+			});
+
+		return defer.promise;
+	}
 
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('myApp.services', []).
-  value('version', '0.1');
+	return productsObj;
+
+
+}]);
