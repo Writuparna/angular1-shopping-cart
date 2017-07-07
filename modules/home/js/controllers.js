@@ -10,7 +10,7 @@ angular.module('cartApp.home.controller', []).controller('HomeController', ['$sc
 		productsFactory.productGetFn()
 			.then(function(allproducts){
 				$scope.allproductsScope = allproducts;
-				sortCategory($scope.allproductsScope);
+				$scope.sortedProduct = sortCategory($scope.allproductsScope);
 				},function(){
 				console.log('data cannot retrieved');
 			});
@@ -28,12 +28,13 @@ angular.module('cartApp.home.controller', []).controller('HomeController', ['$sc
 				}
 			}
 			if(count>1){
-				$scope.sameCatgAry.pop;
+				$scope.sameCatgAry.pop();
 			}
 		}
-			console.log(JSON.stringify($scope.sameCatgAry));
-		//$scope.cartAryPro = productGetArray.productsInCart;
-	
+		console.log(JSON.stringify($scope.sameCatgAry));	
+	}
+	$scope.catgoryList = function($index){
+		console.log('category list:'+ $scope.sameCatgAry[$index].p_catg_id);
 	}
 
 }]);

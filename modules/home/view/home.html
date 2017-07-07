@@ -1,8 +1,13 @@
-<p>This is home page</p>
 <div class="container">
+	<h2>This is home page</h2>
 	<div class="row">
-		<ul>
-			<li ng-repeat="product in cartAryPro">{{product}}</li>
+		<ul class="productList">
+			<li class="col-md-3 well imgSec" ng-repeat="product in sameCatgAry">
+				<div class="imgSec">
+					<img src="img/products/{{product.p_image}}" alt="">		
+				</div>
+					<h3 ng-click="catgoryList($index)">{{product.p_catg_name}}</h3>
+			</li>
 		</ul>
 	</div>
 </div>

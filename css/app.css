@@ -28,3 +28,10 @@
   content: "";
   padding: 0;
 }
+
+img{max-width: 100%; height: auto;}
+ul{margin: 0; padding: 0;}
+ul:after{display: block; clear: both; content: "";}
+ul li{list-style: none;}
+
+.productList li .imgSec{height: 200px; overflow: hidden; background: #fff;}
