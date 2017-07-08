@@ -4,7 +4,7 @@ angular.module('cartApp.productdetail.controller', []).controller('Productdetail
 
 	$scope.singleProId = productsFactory.getProIdFn();
 	console.log('singleProId: '+ $scope.singleProId);
-	//$scope.singleProDetail = [];
+	$scope.selectedProAry = [];
 
 	$scope.productDetailFn = function(){
 
@@ -25,7 +25,40 @@ angular.module('cartApp.productdetail.controller', []).controller('Productdetail
 				$scope.singleProDetail = allProData[i];
 			}
 		}
-			console.log('single Pro Detail: '+ JSON.stringify($scope.singleProDetail));
+			
 	}
+
+	$scope.addtoCartFn = function(qtyparam){	
+		$scope.proPrice = $scope.singleProDetail.p_originalprice;
+		$scope.qty = qtyparam;
+		$scope.img = $scope.singleProDetail.p_image;
+		$scope.proname = $scope.singleProDetail.p_name;
+		$scope.proId = $scope.singleProDetail.p_id;
+		$scope.cartItem = {
+			proId : $scope.proId,
+			proImg : $scope.img,
+			proName : $scope.proname,
+			proPrice : $scope.proPrice,
+			proQty : $scope.qty,
+		}
+		console.log('selectedProAry.length: '+ $scope.selectedProAry.length);
+		$scope.selectedProAry.push($scope.cartItem);
+		for(var i=0; i<$scope.selectedProAry.length; i++){
+			//$scope.selectedProAry.push($scope.cartItem);
+			var count=0;
+			console.log('selectedProAry: '+ JSON.stringify($scope.selectedProAry[i]));
+			if($scope.selectedProAry[i].proId == $scope.cartItem.proId){
+				count++;
+				console.log('count: '+ count);
+			}else{
+				count=0;
+			}
+			if(count>1){
+				$scope.selectedProAry.pop();
+			}/**//**/
+		}
+		console.log('single Pro Detail: '+ JSON.stringify($scope.selectedProAry));
+	}
+
 
 }]);

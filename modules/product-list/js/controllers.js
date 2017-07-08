@@ -24,7 +24,7 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 				$scope.sameProAry.push(allProList[i]);
 			}
 		}
-		console.log(JSON.stringify($scope.sameProAry));
+		//console.log(JSON.stringify($scope.sameProAry));
 	}
 	$scope.proIdFn = function($index){
 		$scope.proId = $scope.sameProAry[$index].p_id;
