@@ -35,7 +35,7 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 		controller : 'ProductdetailController'
 	}).state('cart',{
 		url : '/cart',
-		templateUrl : 'modules/cart/views/cart.html',
+		templateUrl : 'modules/cart/view/cart.html',
 		controller : 'CartController'
 	});
 	$urlRouterProvider.otherwise('home');/**/

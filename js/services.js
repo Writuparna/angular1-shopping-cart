@@ -8,7 +8,9 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 		setProCatIdFn : setProCatIdFn,
 		getProCatIdFn : getProCatIdFn,
 		setProIdFn : setProIdFn,
-		getProIdFn : getProIdFn
+		getProIdFn : getProIdFn,
+		setCartArryFn : setCartArryFn,
+		getCartArryFn : getCartArryFn
 	};
 
 	function productGetFn(){
@@ -44,11 +46,19 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 		//console.log('sigle product detail: '+ productsObj.singleProId);
 	}
 	function getProIdFn(){
-		console.log('sigle product detail: '+ productsObj.singleProId);
+		//console.log('sigle product detail: '+ productsObj.singleProId);
 		return productsObj.singleProId;
 	}
 
+	/*to get add to cart ammount*/
 
+	function setCartArryFn(cartArry){
+		productsObj.cartArry = cartArry
+		console.log('cart Array: '+ JSON.stringify(productsObj.cartArry));
+	}
+	function getCartArryFn(){
+		return productsObj.cartArry;
+	}
 
 
 	return productsObj;

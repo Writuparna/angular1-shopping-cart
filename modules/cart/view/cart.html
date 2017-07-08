@@ -1,19 +1,26 @@
 <div class="container">
-	<h2>This is product detail page</h2>
-	<div class="row">
-		<div class="col-sm-4">
-			<img src="img/products/{{singleProDetail.p_image}}" alt="">
-		</div>
-		<div class="col-sm-7 col-offset-sm-1">
-			<h3>{{singleProDetail.p_name}}</h3>
-			<h4>{{singleProDetail.p_catg_name}}</h4>
-			<p>{{singleProDetail.p_description}}</p>
-			<p><span>Price:</span><b>{{singleProDetail.p_price | currency}}</b></p>
-			<div>
-				<input type="number">
-				<button type="button" class="btn btn-primary">Add to cart</button>
-			</div>
-		</div>
-	</div> 
+	<h2>This is cart page</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>image</th>
+				<th>name</th>
+				<th>quantity</th>
+				<th>price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="product in cartAry">
+				<td>{{product.proId}}</td>
+				<td>{{product.proImg}}</td>
+				<td>{{product.proName}}</td>
+				<td>{{product.proPrice}}</td>
+				<td>{{product.proQty}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
 	
 </div>

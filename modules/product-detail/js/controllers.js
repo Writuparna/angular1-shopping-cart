@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cartApp.productdetail.controller', []).controller('ProductdetailController', ['$scope','productsFactory',function($scope,productsFactory){
+angular.module('cartApp.productdetail.controller', []).controller('ProductdetailController', ['$scope','productsFactory','$state',function($scope,productsFactory,$state){
 
 	$scope.singleProId = productsFactory.getProIdFn();
 	console.log('singleProId: '+ $scope.singleProId);
@@ -34,30 +34,41 @@ angular.module('cartApp.productdetail.controller', []).controller('Productdetail
 		$scope.img = $scope.singleProDetail.p_image;
 		$scope.proname = $scope.singleProDetail.p_name;
 		$scope.proId = $scope.singleProDetail.p_id;
-		$scope.cartItem = {
-			proId : $scope.proId,
-			proImg : $scope.img,
-			proName : $scope.proname,
-			proPrice : $scope.proPrice,
-			proQty : $scope.qty,
-		}
-		console.log('selectedProAry.length: '+ $scope.selectedProAry.length);
-		$scope.selectedProAry.push($scope.cartItem);
-		for(var i=0; i<$scope.selectedProAry.length; i++){
-			//$scope.selectedProAry.push($scope.cartItem);
-			var count=0;
-			console.log('selectedProAry: '+ JSON.stringify($scope.selectedProAry[i]));
-			if($scope.selectedProAry[i].proId == $scope.cartItem.proId){
-				count++;
-				console.log('count: '+ count);
-			}else{
-				count=0;
+		if($scope.qty > 0){
+			$scope.cartItem = {
+				proId : $scope.proId,
+				proImg : $scope.img,
+				proName : $scope.proname,
+				proPrice : $scope.proPrice,
+				proQty : $scope.qty,
 			}
-			if(count>1){
-				$scope.selectedProAry.pop();
-			}/**//**/
+			console.log('selectedProAry.length: '+ $scope.selectedProAry.length);
+			$scope.selectedProAry.push($scope.cartItem);
+				var count=0;
+			for(var i=0; i<$scope.selectedProAry.length; i++){
+				console.log('count: '+ count);
+				console.log('selectedProAry: '+ JSON.stringify($scope.cartItem.proId));
+				var newQty = $scope.cartItem.proQty;
+				console.log('newQty: '+ newQty);
+				if($scope.selectedProAry[i].proId == $scope.cartItem.proId){
+					count++;
+					console.log('count if id equal: '+ count);
+				}
+				if(count>1){
+					//$scope.selectedProAry[0].proQty = newQty;
+					alert('Product already added to cart');
+					$scope.selectedProAry.pop();
+					console.log('pop last');
+				}
+			}
+			
+			console.log('single Pro Detail: '+ JSON.stringify($scope.selectedProAry));
+			productsFactory.setCartArryFn($scope.selectedProAry);
+			$state.go('cart');
+		}else{
+			alert('please enter quantity');
 		}
-		console.log('single Pro Detail: '+ JSON.stringify($scope.selectedProAry));
+
 	}
 
 
