@@ -44,37 +44,6 @@ angular.module('cartApp.productdetail.controller', []).controller('Productdetail
 			console.log('new object: '+ JSON.stringify($scope.cartItem));
 
 			productsFactory.setCartObjFn($scope.cartItem);
-
-
-			/*productsFactory.setCartObjFn($scope.selectedProAry)
-			$scope.cartItem = {
-				proId : $scope.proId,
-				proImg : $scope.img,
-				proName : $scope.proname,
-				proPrice : $scope.proPrice,
-				proQty : $scope.qty,
-			}
-			console.log('selectedProAry.length: '+ $scope.selectedProAry.length);
-			$scope.selectedProAry.push($scope.cartItem);
-				var count=0;
-			for(var i=0; i<$scope.selectedProAry.length; i++){
-				console.log('count: '+ count);
-				console.log('selectedProAry: '+ JSON.stringify($scope.cartItem.proId));
-				var newQty = $scope.cartItem.proQty;
-				console.log('newQty: '+ newQty);
-				if($scope.selectedProAry[i].proId == $scope.cartItem.proId){
-					count++;
-					console.log('count if id equal: '+ count);
-				}
-				if(count>1){
-					alert('Product already added to cart');
-					$scope.selectedProAry.pop();
-					console.log('pop last');
-				}
-			}
-			
-			console.log('single Pro Detail: '+ JSON.stringify($scope.selectedProAry));
-			productsFactory.setCartArryFn($scope.selectedProAry);*/
 			$state.go('cart');
 		}else{
 			alert('please enter quantity');

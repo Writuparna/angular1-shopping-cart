@@ -1,7 +1,7 @@
 <div class="container">
 	<h2>This is cart page</h2>
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>id</th>
@@ -16,8 +16,8 @@
 				<td>{{product.proId}}</td>
 				<td>{{product.proImg}}</td>
 				<td>{{product.proName}}</td>
+				<td><input type="number" ng-model="newQty">new quantity:{{newQty}} old quantity:{{product.proQty}}</td>
 				<td>{{product.proPrice}}</td>
-				<td>{{product.proQty}}</td>
 			</tr>
 		</tbody>
 	</table>
