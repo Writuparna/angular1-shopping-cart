@@ -9,8 +9,11 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 		getProCatIdFn : getProCatIdFn,
 		setProIdFn : setProIdFn,
 		getProIdFn : getProIdFn,
-		setCartArryFn : setCartArryFn,
-		getCartArryFn : getCartArryFn
+		/*setCartArryFn : setCartArryFn,
+		getCartArryFn : getCartArryFn*/
+		setCartObjFn : setCartObjFn,
+		getCartObjFn : getCartObjFn,
+		selectedProAry : []
 	};
 
 	function productGetFn(){
@@ -52,13 +55,36 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 
 	/*to get add to cart ammount*/
 
-	function setCartArryFn(cartArry){
-		productsObj.cartArry = cartArry
-		console.log('cart Array: '+ JSON.stringify(productsObj.cartArry));
+	function setCartObjFn(cartObj){
+		productsObj.cartObj = cartObj;
+		console.log('cart Object: '+ JSON.stringify(productsObj.cartObj));
+
+		/*push object to an array*/
+		productsObj.selectedProAry.push(productsObj.cartObj);
+				var count=0;
+			for(var i=0; i<productsObj.selectedProAry.length; i++){
+				console.log('count: '+ count);
+				console.log('selectedProAry: '+ JSON.stringify(productsObj.cartObj.proId));
+				/*var newQty = productsObj.cartObj.proQty;
+				console.log('newQty: '+ newQty);*/
+				if(productsObj.selectedProAry[i].proId == productsObj.cartObj.proId){
+					count++;
+					console.log('count if id equal: '+ count);
+				}
+				if(count>1){
+					alert('Product already added to cart');
+					productsObj.selectedProAry.pop();
+					console.log('pop last');
+				}
+			}
+			
+			console.log('single Pro Detail: '+ JSON.stringify(productsObj.selectedProAry));
+
 	}
-	function getCartArryFn(){
-		return productsObj.cartArry;
+	function getCartObjFn(){
+		return productsObj.selectedProAry;
 	}
+
 
 
 	return productsObj;
