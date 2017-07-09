@@ -9,6 +9,7 @@
 				<th>name</th>
 				<th>quantity</th>
 				<th>price</th>
+				<th>total</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -16,8 +17,11 @@
 				<td>{{product.proId}}</td>
 				<td>{{product.proImg}}</td>
 				<td>{{product.proName}}</td>
-				<td><input type="number" ng-model="newQty">new quantity:{{newQty}} old quantity:{{product.proQty}}</td>
+				<td><input type="number" ng-model="newQty" ng-change="changeQtyFn(newQty,$index)">new quantity:{{newQtyScope}} old quantity:{{product.proQty}}</td>
 				<td>{{product.proPrice}}</td>
+				<td>{{product.proPrice * product.proQty}}
+					<b>{{totalPrice}}</b>
+				</td>
 			</tr>
 		</tbody>
 	</table>
