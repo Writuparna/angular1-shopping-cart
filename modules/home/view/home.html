@@ -2,11 +2,13 @@
 	<h2>This is home page</h2>
 	<div class="row">
 		<ul class="productList">
-			<li class="col-md-3 well imgSec" ng-repeat="product in sameCatgAry">
-				<div class="imgSec">
-					<img src="img/products/{{product.p_image}}" alt="">		
-				</div>
+			<li class="col-md-3 " ng-repeat="product in sameCatgAry">
+				<div class="well">					
+					<div class="imgSec">
+						<img src="img/products/{{product.p_image}}" alt="">		
+					</div>
 					<h3 ng-click="catgoryList($index)">{{product.p_catg_name}}</h3>
+				</div>
 			</li>
 		</ul>
 	</div>

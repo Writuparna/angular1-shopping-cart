@@ -4,10 +4,13 @@
 
 
 angular.module('cartApp.header.directives', []).
-  directive('mainHeader', [function(){
+  directive('mainHeader', ['productsFactory',function(productsFactory){
     return {
     	restrict : 'AEC',
     	replace : true,
-    	templateUrl : 'modules/header/view/header.html'
+    	templateUrl : 'modules/header/view/header.html',
+    	link: function(scope, element, attrs){
+    		scope.wishCount = productsFactory.getWishlistFn();
+    	}
     };
   }]);

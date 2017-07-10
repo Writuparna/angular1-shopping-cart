@@ -10,6 +10,7 @@
 				<th>quantity</th>
 				<th>price</th>
 				<th>total</th>
+				<th>action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,12 +23,16 @@
 				<td>
 					<b>{{product.totalPrice}}</b>
 				</td>
+				<td>
+					<button type="button" ng-click="removeItem($index)">Remove</button>
+					<button type="button" ng-click="cartWishList($index)"><span class="glyphicon glyphicon-heart"></span>wish list</button>
+				</td>
 			</tr>
 		</tbody>
 		<tfoot>
 			<tr>
 				<td colspan="5" >grand total</td>
-				<td><h3>{{grandTotal | currency}}</h3></td>
+				<td colspan="2"><h3>{{grandTotal | currency}}</h3></td>
 			</tr>
 		</tfoot>
 	</table>
