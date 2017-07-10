@@ -81,6 +81,8 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 			console.log('single Pro Detail: '+ JSON.stringify(productsObj.selectedProAry));
 
 	}
+
+
 	function getCartObjFn(){
 		return productsObj.selectedProAry;
 	}

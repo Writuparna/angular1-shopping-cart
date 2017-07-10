@@ -41,6 +41,8 @@ angular.module('cartApp.productdetail.controller', []).controller('Productdetail
 			$scope.cartItem.proName = $scope.proname;
 			$scope.cartItem.proPrice = $scope.proPrice;
 			$scope.cartItem.proQty = $scope.qty;
+			$scope.cartItem.totalPrice = $scope.qty*$scope.proPrice;
+			$scope.cartItem.grandTotal = 0;
 			console.log('new object: '+ JSON.stringify($scope.cartItem));
 
 			productsFactory.setCartObjFn($scope.cartItem);

@@ -17,13 +17,19 @@
 				<td>{{product.proId}}</td>
 				<td>{{product.proImg}}</td>
 				<td>{{product.proName}}</td>
-				<td><input type="number" ng-model="newQty" ng-change="changeQtyFn(newQty,$index)">new quantity:{{newQtyScope}} old quantity:{{product.proQty}}</td>
+				<td><input type="text" ng-model="newQty" ng-change="changeQtyFn(newQty,$index)">new quantity:{{newQtyScope}} old quantity:{{product.proQty}}</td>
 				<td>{{product.proPrice}}</td>
-				<td>{{product.proPrice * product.proQty}}
-					<b>{{totalPrice}}</b>
+				<td>
+					<b>{{product.totalPrice}}</b>
 				</td>
 			</tr>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5" >grand total</td>
+				<td><h3>{{grandTotal | currency}}</h3></td>
+			</tr>
+		</tfoot>
 	</table>
 	
 	
