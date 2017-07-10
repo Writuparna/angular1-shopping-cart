@@ -106,12 +106,13 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 			}
 		}
 		productsObj.wishCount = productsObj.wishlistAry.length;
+		//console.log('wish count: '+ JSON.stringify(productsObj.wishCount));
 	}
 
 	function getWishlistFn(){
 		
 		console.log('wish count: '+ JSON.stringify(productsObj.wishCount));
-		return productsObj.wishCount
+		return productsObj.wishCount;
 
 	}
 
@@ -120,5 +121,3 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 
 
 }]);
-
-

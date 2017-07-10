@@ -6,6 +6,7 @@ angular.module('cartApp.productdetail.controller', []).controller('Productdetail
 	console.log('singleProId: '+ $scope.singleProId);
 	$scope.selectedProAry = [];
 	$scope.cartItem = {};
+	$scope.wishcount = productsFactory.getWishlistFn();
 
 	$scope.productDetailFn = function(){
 

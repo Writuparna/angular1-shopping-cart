@@ -37,7 +37,7 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 	$scope.wishList = function($index){
 		
 		$scope.wishlistObj = ($scope.sameProAry[$index]);
-		console.log('wish list array: '+ JSON.stringify($scope.wishlistObj));
+		console.log('wish list obj: '+ JSON.stringify($scope.wishlistObj));
 
 		productsFactory.setWishlistFn($scope.wishlistObj);
 

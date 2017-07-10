@@ -9,8 +9,11 @@ angular.module('cartApp.header.directives', []).
     	restrict : 'AEC',
     	replace : true,
     	templateUrl : 'modules/header/view/header.html',
-    	link: function(scope, element, attrs){
+    	/*link: function(scope, element, attrs){
     		scope.wishCount = productsFactory.getWishlistFn();
-    	}
+    	}*/
+    	/*controller: function($scope, $element, $attrs){
+    		
+    	}*/
     };
   }]);
