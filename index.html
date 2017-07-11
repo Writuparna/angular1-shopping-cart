@@ -12,7 +12,9 @@
     <li><a href="#/view1">view1</a></li>
     <li><a href="#/view2">view2</a></li>
   </ul> -->
-  <main-header></main-header>
+  <div ng-controller="HeaderController">
+    <main-header></main-header>
+  </div>
   <div ui-view></div>
 
   
@@ -41,6 +43,9 @@
 
   <script src="modules/cart/cartModule.js"></script>
   <script src="modules/cart/js/controllers.js"></script>
+
+  <script src="modules/wishlist/wishlistModule.js"></script>
+  <script src="modules/wishlist/js/controllers.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,25 @@
+<div class="container">
+	<h2>This is wishlist page</h2>
+	<table class="table tableProducts">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>image</th>
+				<th>name</th>
+				<th>action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="product in wishArray">
+				<td>{{product.p_id}}</td>
+				<td><img src="img/products/{{product.p_image}}" alt="{{product.p_name}}"></td>
+				<td>{{product.p_name}}</td>
+				<td>
+					<button type="button" ng-click="cartWishList($index)"><span class="glyphicon glyphicon-heart"></span>remove from wish list</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+</div>

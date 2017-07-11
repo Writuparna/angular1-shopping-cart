@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',function($q,$http){
+angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$rootScope',function($q,$http,$rootScope){
 
 	var productsObj = {
 		productGetFn : productGetFn,
@@ -16,20 +16,23 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 		selectedProAry : [],
 		setWishlistFn : setWishlistFn,
 		getWishlistFn : getWishlistFn,
-		wishlistAry : []
+		wishlistAry : [],
+		wishCount : 0
 	};
 
 	function productGetFn(){
 
 		var defer = $q.defer();
 
-		$http.get('data/cart.json')
-			.success(function(data){
-				productsObj.productGetArray = data;
-				defer.resolve(data)
-			}).error(function(){
-				defer.reject('data can\'t be retained');
-			});
+		$http({
+			url : 'data/cart.json',
+			method : 'GET',
+		}).success(function(data){
+			productsObj.productGetArray = data;
+			defer.resolve(data)
+		}).error(function(){
+			defer.reject('data can\'t be retained');
+		});
 
 		return defer.promise;
 	}
@@ -97,22 +100,34 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 		productsObj.wishlistObj = wishObj
 		productsObj.wishlistAry.push(productsObj.wishlistObj);
 		var count = 0;
+		var indexVal;
 		for(var i = 0; i<productsObj.wishlistAry.length; i++){
 			if(productsObj.wishlistAry[i].p_id == productsObj.wishlistObj.p_id){
 				count++;
 			}
 			if(count > 1){
+				var values = productsObj.wishlistAry.map(function(o) { 
+					 indexVal = o.p_name; 
+					 return indexVal;
+				});
+				var index = values.indexOf(indexVal);
+				console.log('wish array propety value: '+ JSON.stringify(indexVal));
+				console.log('wish array index: '+ index);
+				productsObj.wishlistAry.splice(index,1);
 				productsObj.wishlistAry.pop();
 			}
 		}
-		productsObj.wishCount = productsObj.wishlistAry.length;
+		//productsObj.wishCount = productsObj.wishlistAry.length;
+		$rootScope.wishcount = productsObj.wishlistAry.length;
 		//console.log('wish count: '+ JSON.stringify(productsObj.wishCount));
+
+
 	}
 
 	function getWishlistFn(){
 		
-		console.log('wish count: '+ JSON.stringify(productsObj.wishCount));
-		return productsObj.wishCount;
+		console.log('wish array: '+ JSON.stringify(productsObj.wishlistAry));
+		return productsObj.wishlistAry;
 
 	}
 
@@ -121,3 +136,6 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http',fun
 
 
 }]);
+
+
+

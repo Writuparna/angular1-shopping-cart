@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('cartApp.productdetail.controller', []).controller('ProductdetailController', ['$scope','productsFactory','$state',function($scope,productsFactory,$state){
+angular.module('cartApp.productdetail.controller', []).controller('ProductdetailController', ['$scope','$rootScope','productsFactory','$state',function($scope,$rootScope,productsFactory,$state){
 
 	$scope.singleProId = productsFactory.getProIdFn();
 	console.log('singleProId: '+ $scope.singleProId);
 	$scope.selectedProAry = [];
 	$scope.cartItem = {};
-	$scope.wishcount = productsFactory.getWishlistFn();
+
+
 
 	$scope.productDetailFn = function(){
 

@@ -41,6 +41,7 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 
 		productsFactory.setWishlistFn($scope.wishlistObj);
 
+		//$scope.wishArray = productsFactory.getWishlistFn();
 	}
 
 
