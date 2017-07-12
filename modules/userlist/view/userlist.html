@@ -1,0 +1,30 @@
+<p>This is user list page</p>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 ">
+			{{signupAry}}
+		<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Phone number</th>
+				<th>Email</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="user in signupAry">
+				<td>{{user.username}}</td>
+				<td>{{user.userphno}}</td>
+				<td>{{user.useremail}}</td>
+				<td>
+					<button type="button" ng-click="cartWishList($index)"><span class="glyphicon glyphicon-delete"></span>remove user</button>
+					<button type="button" ng-click="cartWishList($index)"><span class="glyphicon glyphicon-eye"></span>vew user</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+		</div>
+	</div>
+</div>

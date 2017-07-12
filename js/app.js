@@ -10,7 +10,8 @@ var cartApp = angular.module('cartApp',[
 	'cartApp.productlist',
 	'cartApp.productdetail',
 	'cartApp.cart',
-	'cartApp.wishlist'
+	'cartApp.wishlist',
+	'cartApp.userlist'
 ]);
 
 
@@ -45,6 +46,10 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 		url : '/wishlist',
 		templateUrl : 'modules/wishlist/view/wishlist.html',
 		controller : 'WishlistController'
+	}).state('userlist',{
+		url : '/userlist',
+		templateUrl : 'modules/userlist/view/userlist.html',
+		controller : 'UserlistController'
 	});
 	$urlRouterProvider.otherwise('home');/**/
 
