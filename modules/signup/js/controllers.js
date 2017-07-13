@@ -9,12 +9,11 @@ angular.module('cartApp.signup.controller', []).controller('SignupController', [
 
 		signupFactory.setSignupFormFn(username,userphno,useremail,userpass,userconfirmpass);
 
-		$scope.username = ""
-		$scope.userphno = ""
-		$scope.useremail = ""
-		$scope.userpass = ""
-		$scope.userconfirmpass = ""
-		//console.log(JSON.stringify($scope.signupAry));
+		$scope.username = "";
+		$scope.userphno = "";
+		$scope.useremail = "";
+		$scope.userpass = "";
+		$scope.userconfirmpass = "";
 	}
 
 }]);

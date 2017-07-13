@@ -40,4 +40,6 @@ angular.module('cartApp.home.controller', []).controller('HomeController', ['$sc
 		$state.go('productlist');
 	}
 
+
+
 }]);

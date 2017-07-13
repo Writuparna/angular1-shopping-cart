@@ -11,7 +11,9 @@ var cartApp = angular.module('cartApp',[
 	'cartApp.productdetail',
 	'cartApp.cart',
 	'cartApp.wishlist',
-	'cartApp.userlist'
+	'cartApp.userlist',
+	'ui.bootstrap',
+	'cartApp.slider'
 ]);
 
 
@@ -26,6 +28,9 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 	}).state('header',{
 		template : '<main-header></main-header>',
 		controller : 'HeaderController'
+	}).state('slider',{
+		template : '<home-slider></home-slider>',
+		controller : 'SliderController'
 	}).state('signup',{
 		url : '/signup',
 		templateUrl : 'modules/signup/view/signup.html',

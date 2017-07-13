@@ -17,7 +17,8 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		setWishlistFn : setWishlistFn,
 		getWishlistFn : getWishlistFn,
 		wishlistAry : [],
-		wishCount : 0
+		wishCount : 0,
+		wishVar : false
 	};
 
 	function productGetFn(){
@@ -95,7 +96,7 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 
 
 	/*wish list value*/
-
+ 	$rootScope.wishcount = 0;
 	function setWishlistFn(wishObj){
 		productsObj.wishlistObj = wishObj
 		productsObj.wishlistAry.push(productsObj.wishlistObj);
@@ -120,7 +121,9 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		//productsObj.wishCount = productsObj.wishlistAry.length;
 		$rootScope.wishcount = productsObj.wishlistAry.length;
 		//console.log('wish count: '+ JSON.stringify(productsObj.wishCount));
-
+		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
+		console.log('header controller wish count: '+ $rootScope.wishcount);
+		console.log('wish show hide: '+productsObj.wishVar);
 
 	}
 
