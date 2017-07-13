@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 ">
-			{{signupAry}}
+
 		<table class="table">
 		<thead>
 			<tr>
@@ -14,10 +14,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="user in signupAry">
-				<td>{{user.username}}</td>
-				<td>{{user.userphno}}</td>
-				<td>{{user.useremail}}</td>
+			<tr ng-repeat="user in userListAry">
+				<td>{{user.name}}</td>
+				<td>{{user.phone}}</td>
+				<td>{{user.email}}</td>
 				<td>
 					<button type="button" ng-click="cartWishList($index)"><span class="glyphicon glyphicon-delete"></span>remove user</button>
 					<button type="button" ng-click="cartWishList($index)"><span class="glyphicon glyphicon-eye"></span>vew user</button>
