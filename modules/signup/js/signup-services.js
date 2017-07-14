@@ -59,7 +59,7 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
 			method : 'GET',
 		}).success(function(data){
 			signupObj.fetchFormData = data;
-			console.log('signup service: '+JSON.stringify(signupObj.fetchFormData));
+			//console.log('signup service: '+JSON.stringify(signupObj.fetchFormData));
 			defer.resolve(data);
 		}).error(function(){
 			defer.reject('data can\'t be retained');

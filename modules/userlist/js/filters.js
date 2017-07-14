@@ -6,7 +6,11 @@ angular.module('cartApp.userlist.filters', []).filter('searchUser', [function(){
     return function(arr, searchString) {
 
     	var result = [];
-    	console.log(arr);
+    	
+        if(!searchString){
+            return arr;
+        }
+    	
     	searchString = searchString.toLowerCase();
     	angular.forEach(arr, function(item){
     		 if(item.name.toLowerCase().indexOf(searchString) !== -1){
@@ -14,9 +18,10 @@ angular.module('cartApp.userlist.filters', []).filter('searchUser', [function(){
             }
 
     	})
-
-    }
+    	console.log('filter arr: '+JSON.stringify(result));
 
     return result;
+
+    }
 
   }]);
