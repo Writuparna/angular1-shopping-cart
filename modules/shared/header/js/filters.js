@@ -2,9 +2,13 @@
 
 /* Filters */
 
-angular.module('myApp.filters', []).
-  filter('interpolate', ['version', function(version) {
-    return function(text) {
-      return String(text).replace(/\%VERSION\%/mg, version);
+angular.module('cartApp.header.filters', []).filter('searchProduct', [function(){
+    return function(arr, searchString) {
+
+    	var result = [];
+
     }
+
+    return result;
+
   }]);

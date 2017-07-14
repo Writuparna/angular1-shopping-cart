@@ -2,7 +2,8 @@
 
 angular.module('cartApp.header',[
 	'cartApp.header.controller',
-	'cartApp.header.directives'
+	'cartApp.header.directives',
+	'cartApp.header.filters',
 ]);
 
 
