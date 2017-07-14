@@ -1,5 +1,6 @@
 <div class="container">
 	<h2>This is wishlist page</h2>
+	<label>Search item: </label> <input type="text" ng-model="searchString">
 	<table class="table tableProducts">
 		<thead>
 			<tr>
@@ -10,7 +11,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="product in wishArray">
+			<tr ng-repeat="product in wishArray | searchItem:searchString">
 				<td>{{product.p_id}}</td>
 				<td><img src="img/products/{{product.p_image}}" alt="{{product.p_name}}"></td>
 				<td>{{product.p_name}}</td>

@@ -2,7 +2,7 @@
 
 /* Filters */
 
-angular.module('cartApp.userlist.filters', []).filter('searchUser', [function(){
+angular.module('cartApp.wishlist.filter', []).filter('searchItem', [function(){
     return function(arr, searchString) {
 
     	var result = [];
@@ -13,7 +13,7 @@ angular.module('cartApp.userlist.filters', []).filter('searchUser', [function(){
 
     	searchString = searchString.toLowerCase();
     	angular.forEach(arr, function(item){
-    		 if(item.name.toLowerCase().indexOf(searchString) !== -1){
+    		 if(item.p_name.toLowerCase().indexOf(searchString) !== -1){
                 result.push(item);
             }
 

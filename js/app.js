@@ -13,7 +13,8 @@ var cartApp = angular.module('cartApp',[
 	'cartApp.wishlist',
 	'cartApp.userlist',
 	'ui.bootstrap',
-	'cartApp.slider'
+	'cartApp.slider',
+	'cartApp.login',
 ]);
 
 
@@ -35,6 +36,10 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 		url : '/signup',
 		templateUrl : 'modules/signup/view/signup.html',
 		controller : 'SignupController'
+	}).state('login',{
+		url : '/login',
+		templateUrl : 'modules/login/view/login.html',
+		controller : 'LoginController'
 	}).state('productlist',{
 		url: '/productlist',
 		templateUrl: 'modules/product-list/view/productlist.html',

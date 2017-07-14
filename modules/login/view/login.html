@@ -1,0 +1,23 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
+			<h2>This is Login page</h2>
+			<form name="userLoginForm" method="post" class="well" ng-submit="loginForm(useremail,userpass)" novalidate>
+				<div class="form-group" ng-class="{'has-error' : userLoginForm.useremail.$invalid && !userLoginForm.useremail.$pristin}">
+					<label>Email</label>
+					<input type="email" name="useremail" id="useremail" ng-model="useremail" value="" class="form-control" required>
+					<p ng-show="userLoginForm.useremail.$invalid && !userLoginForm.useremail.$pristin">This is not a valid email</p>
+				</div>
+				<div class="form-group" ng-class="{'has-error' : userLoginForm.userpass.$invalid && !userLoginForm.userpass.$pristin}">
+					<label>Password</label>
+					<input type="password" name="userpass" id="userpass" ng-model="userpass" value="" class="form-control" required>
+					<p ng-show="userLoginForm.userpass.$invalid && !userLoginForm.userpass.$pristin">Password required</p>
+				</div>
+				<div class="form-group">
+					<button type="submit" id="login" class="btn btn-primary" ng-disabled="userLoginForm.$invalid">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
