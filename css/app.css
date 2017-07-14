@@ -1,5 +1,7 @@
 /* app css stylesheet */
-
+body.cartApp{
+  font-family: 'Roboto Condensed', sans-serif;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -38,3 +40,12 @@ ul li{list-style: none;}
 
 .table{width: 100%;}
 .tableProducts img{max-width: 100px; height: auto;}
+
+.navbar.navbar-inverse.mainNav{margin: 0; border-radius: 0;}
+
+.slider .carousel-inner>.item>img{width: 100%; height: auto;}
+.slider{height: auto; overflow: hidden;}
+
+.slider .carousel-control.left, .slider .carousel-control.right{background: none}
+
+.productList li h3{font-size: 16px; cursor: pointer;}

@@ -1,11 +1,19 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse mainNav">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">W cart</a>
+      <a class="navbar-brand" href="#home">W cart</a>
     </div>
     <ul class="nav navbar-nav">
-      <li ng-class="{ active: $state.includes('Home') }"><a href="#home">Home</a></li>
+      <li><a href="#electronics" ng-click="catFn()">Electronics{{abc}}</a></li>
+      <li><a href="#men">Men</a></li>
+      <li><a href="#women">Women</a></li>
     </ul>
+    <form class="navbar-form navbar-left">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#userlist"><span class="glyphicon glyphicon-user"></span>userlist</a></li>
       <li><a href="#wishlist"><span class="glyphicon glyphicon-heart"></span>{{wishcount}}</a></li>
