@@ -9,8 +9,6 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		getProCatIdFn : getProCatIdFn,
 		setProIdFn : setProIdFn,
 		getProIdFn : getProIdFn,
-		/*setCartArryFn : setCartArryFn,
-		getCartArryFn : getCartArryFn*/
 		setCartObjFn : setCartObjFn,
 		getCartObjFn : getCartObjFn,
 		selectedProAry : [],
@@ -18,7 +16,9 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		getWishlistFn : getWishlistFn,
 		wishlistAry : [],
 		wishCount : 0,
-		wishVar : false
+		wishVar : false,
+		setAddtocartFn : setAddtocartFn,
+		getAddtocartFn : getAddtocartFn
 	};
 
 	function productGetFn(){
@@ -65,11 +65,14 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 	function setCartObjFn(cartObj){
 		productsObj.cartObj = cartObj;
 		//console.log('cart Object: '+ JSON.stringify(productsObj.cartObj));
-
+		console.log('hello');
 		/*push object to an array*/
 		productsObj.selectedProAry.push(productsObj.cartObj);
-				var count=0;
+
+		console.log('hello2');
+			var count=0;
 			for(var i=0; i<productsObj.selectedProAry.length; i++){
+				console.log('hello3');
 				//console.log('count: '+ count);
 				//console.log('selectedProAry: '+ JSON.stringify(productsObj.cartObj.proId));
 				/*var newQty = productsObj.cartObj.proQty;
@@ -84,10 +87,7 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 					console.log('pop last');
 				}
 			}
-			
-			//console.log('single Pro Detail: '+ JSON.stringify(productsObj.selectedProAry));
-
-	}
+		}
 
 
 	function getCartObjFn(){
@@ -131,8 +131,38 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		
 		console.log('wish array: '+ JSON.stringify(productsObj.wishlistAry));
 		return productsObj.wishlistAry;
-
 	}
+
+/*add to cart button */
+
+ function setAddtocartFn(proObj){
+
+
+		productsObj.proObj = proObj;
+
+		/*push object to an array*/
+		productsObj.selectedProAry.push(productsObj.proObj);
+			var count=0;
+			for(var i=0; i<productsObj.selectedProAry.length; i++){
+				
+				if(productsObj.selectedProAry[i].p_id == productsObj.proObj.p_id || productsObj.selectedProAry[i].proId == productsObj.proObj.p_id){
+					count++;
+				}
+				if(count>1){
+					alert('Product already added to cart');
+					productsObj.selectedProAry.pop();
+					console.log('pop last');
+				}
+			}/**/
+		console.log('cart Object: '+ JSON.stringify(productsObj.selectedProAry));
+		
+
+ }
+
+ function getAddtocartFn(){
+ 	return productsObj.selectedProAry
+ }
+
 
 
 	return productsObj;

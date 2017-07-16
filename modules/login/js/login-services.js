@@ -10,17 +10,22 @@ angular.module('cartApp.login.services', []).factory('loginFactory',['$http','$q
 
 		function setLoginFormFn(useremail,userpass){
 
-			var def = $q.defer;
-
+			//var def = $q.defer;
+			console.log(useremail +' , '+ userpass)
 			$http({
-				method : 'POST',
 				url : 'data/loginform.php',
+				method : 'POST',
 				data : {
 					'useremail' : useremail,
 					'userpass' : userpass
 				}
-			}).success(function(){
-				alert(useremail)
+			}).success(function(data, status, headers, config){
+				console.log(data);
+				if ( data.trim() === 'correct') {
+					window.location.href = 'http://localhost/cart/project/shopping-cart/';
+				} else {
+					//$scope.errorMsg = "Invalid Email and Password";
+				}
 
 			}).error(function(){
 				alert('no insert')

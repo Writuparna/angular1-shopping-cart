@@ -9,8 +9,8 @@ angular.module('cartApp.login.controller', []).controller('LoginController', ['$
 
 		loginFactory.setLoginFormFn(useremail,userpass);
 
-		$scope.useremail = "";
-		$scope.userpass = "";
+		//$scope.useremail = "";
+		//$scope.userpass = "";
 	}
 
 }]);

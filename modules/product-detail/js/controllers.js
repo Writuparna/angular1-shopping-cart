@@ -21,10 +21,8 @@ angular.module('cartApp.productdetail.controller', []).controller('Productdetail
 	}
 	$scope.productDetailFn();
 	$scope.proDetailFn = function(allProData){
-		//console.log('allProData: '+ allProData);
 		for(var i=0; i<allProData.length; i++){
 			if($scope.singleProId==allProData[i].p_id){
-				//$scope.singleProDetail.push(allProData[i]);
 				$scope.singleProDetail = allProData[i];
 			}
 		}

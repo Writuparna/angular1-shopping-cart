@@ -3,7 +3,9 @@
 angular.module('cartApp.cart.controller', []).controller('CartController', ['$scope','productsFactory',function($scope,productsFactory){
 
 	$scope.cartAry = productsFactory.getCartObjFn();
+	//$scope.cartBtnAry = productsFactory.getAddtocartFn();
 	console.log('cart page: '+ JSON.stringify($scope.cartAry));
+	//console.log('cart button page: '+ JSON.stringify($scope.cartBtnAry));
 		
 	console.log('whole array: '+ JSON.stringify($scope.cartAry));
 	$scope.grandTotal = 0;
@@ -14,14 +16,6 @@ angular.module('cartApp.cart.controller', []).controller('CartController', ['$sc
 	}
 
 	$scope.changeQtyFn = function(newQtyParam,$index){
-		/*function isNumber(evt) {
-		    evt = (evt) ? evt : window.event;
-		    var charCode = (evt.which) ? evt.which : evt.keyCode;
-		    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-		        return false;
-		    }
-		    return true;
-		}*/
 		$scope.newQtyScope = newQtyParam;
 		if($scope.newQtyScope > 0 && $scope.newQtyScope!="" ){
 			console.log('new qty: '+ $scope.newQtyScope + ' index price ' + JSON.stringify($scope.cartAry[$index].proPrice));

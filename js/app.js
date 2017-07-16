@@ -15,6 +15,7 @@ var cartApp = angular.module('cartApp',[
 	'ui.bootstrap',
 	'cartApp.slider',
 	'cartApp.login',
+	'cartApp.userprofile',
 ]);
 
 
