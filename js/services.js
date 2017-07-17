@@ -17,8 +17,10 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		wishlistAry : [],
 		wishCount : 0,
 		wishVar : false,
-		setAddtocartFn : setAddtocartFn,
-		getAddtocartFn : getAddtocartFn
+		removeCartItemFn : removeCartItemFn,
+		cartToWishlistFn : cartToWishlistFn
+		/*setAddtocartFn : setAddtocartFn,
+		getAddtocartFn : getAddtocartFn*/
 	};
 
 	function productGetFn(){
@@ -64,36 +66,31 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 
 	function setCartObjFn(cartObj){
 		productsObj.cartObj = cartObj;
-		//console.log('cart Object: '+ JSON.stringify(productsObj.cartObj));
-		console.log('hello');
-		/*push object to an array*/
 		productsObj.selectedProAry.push(productsObj.cartObj);
 
-		console.log('hello2');
-			var count=0;
-			for(var i=0; i<productsObj.selectedProAry.length; i++){
-				console.log('hello3');
-				//console.log('count: '+ count);
-				//console.log('selectedProAry: '+ JSON.stringify(productsObj.cartObj.proId));
-				/*var newQty = productsObj.cartObj.proQty;
-				console.log('newQty: '+ newQty);*/
-				if(productsObj.selectedProAry[i].proId == productsObj.cartObj.proId){
-					count++;
-					//console.log('count if id equal: '+ count);
-				}
-				if(count>1){
-					alert('Product already added to cart');
-					productsObj.selectedProAry.pop();
-					console.log('pop last');
-				}
+		var count=0;
+		for(var i=0; i<productsObj.selectedProAry.length; i++){
+			if(productsObj.selectedProAry[i].proId == productsObj.cartObj.proId){
+				count++;
 			}
-		}
+			if(count>1){
+				alert('Product already added to cart');
+				productsObj.selectedProAry.pop();
+				console.log('pop last');
+			}
+		}				
+		$rootScope.cartCount = productsObj.selectedProAry.length;
+		console.log('selectedProAry: '+ JSON.stringify(productsObj.selectedProAry.length));
+
+	}
 
 
 	function getCartObjFn(){
 		return productsObj.selectedProAry;
 	}
-
+	function removeCartItemFn(){
+		$rootScope.cartCount = productsObj.selectedProAry.length;		
+	}
 
 	/*wish list value*/
  	$rootScope.wishcount = 0;
@@ -118,9 +115,7 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 				productsObj.wishlistAry.pop();
 			}
 		}
-		//productsObj.wishCount = productsObj.wishlistAry.length;
 		$rootScope.wishcount = productsObj.wishlistAry.length;
-		//console.log('wish count: '+ JSON.stringify(productsObj.wishCount));
 		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
 		console.log('header controller wish count: '+ $rootScope.wishcount);
 		console.log('wish show hide: '+productsObj.wishVar);
@@ -133,36 +128,28 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		return productsObj.wishlistAry;
 	}
 
-/*add to cart button */
-
- function setAddtocartFn(proObj){
-
-
-		productsObj.proObj = proObj;
-
-		/*push object to an array*/
-		productsObj.selectedProAry.push(productsObj.proObj);
-			var count=0;
-			for(var i=0; i<productsObj.selectedProAry.length; i++){
-				
-				if(productsObj.selectedProAry[i].p_id == productsObj.proObj.p_id || productsObj.selectedProAry[i].proId == productsObj.proObj.p_id){
-					count++;
-				}
-				if(count>1){
-					alert('Product already added to cart');
-					productsObj.selectedProAry.pop();
-					console.log('pop last');
-				}
-			}/**/
-		console.log('cart Object: '+ JSON.stringify(productsObj.selectedProAry));
-		
-
- }
-
- function getAddtocartFn(){
- 	return productsObj.selectedProAry
- }
-
+	function cartToWishlistFn(movedItem){
+		productsObj.wishlistAry.push(movedItem);
+		var count = 0;
+		var indexVal;
+		console.log(JSON.stringify(productsObj.movedItem));
+		/*for(var i = 0; i<productsObj.wishlistAry.length; i++){
+			if(productsObj.wishlistAry[i].p_id == productsObj.movedItem.proId){
+				count++;
+			}
+			if(count > 1){
+				var values = productsObj.wishlistAry.map(function(o) { 
+					 indexVal = o.p_name; 
+					 return indexVal;
+				});
+				var index = values.indexOf(indexVal);
+				productsObj.wishlistAry.splice(index,1);
+				productsObj.wishlistAry.pop();
+			}
+		}
+		$rootScope.wishcount = productsObj.wishlistAry.length;
+		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;*/
+	}
 
 
 	return productsObj;
