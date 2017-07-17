@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cartApp.header.controller', []).controller('HeaderController', ['$scope','$rootScope','productsFactory','$state',function($scope,$rootScope,productsFactory,$state){
+angular.module('cartApp.header.controller', []).controller('HeaderController', ['$scope','$rootScope','productsFactory','$state','loginFactory','$window',function($scope,$rootScope,productsFactory,$state,loginFactory,$window){
 
 	$scope.activeMenu = "abc";
 
@@ -42,7 +42,10 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 		$scope.activeMenu = catgname;
 		$state.go('productlist', null,{reload: true});
 	}
-
+	$scope.logout =function(){
+		$window.localStorage.clear();
+		$state.go('home', null,{reload: true});
+	}
 
 
 

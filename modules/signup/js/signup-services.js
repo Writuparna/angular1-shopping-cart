@@ -7,7 +7,7 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
 			setSignupFormFn : setSignupFormFn,
 			getSignupFormFn : getSignupFormFn,
 			signupArray : [],
-			fetchDatatoServerFn : fetchDatatoServerFn
+			fetchDatatoServerFn : fetchDatatoServerFn,
 		};
 
 		function setSignupFormFn(username,userphno,useremail,userpass,userconfirmpass){
@@ -20,10 +20,6 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
 			signupValueObj.userconfirmpass = userconfirmpass;
 
 			signupObj.signupArray.push(signupValueObj);
-
-			/*insert value to database*/
-
-			//var defer = $q.defer();
 
 			$http({
 				url : 'data/form.php',
@@ -42,7 +38,6 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
 				alert('no insert')
 			});
 
-			//return defer.promise;
 		}
 
 		function getSignupFormFn(){
@@ -59,7 +54,6 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
 			method : 'GET',
 		}).success(function(data){
 			signupObj.fetchFormData = data;
-			//console.log('signup service: '+JSON.stringify(signupObj.fetchFormData));
 			defer.resolve(data);
 		}).error(function(){
 			defer.reject('data can\'t be retained');
@@ -68,9 +62,6 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
 		return defer.promise;
 	}
 
-
-
-		return signupObj;
-
+	return signupObj;
 
 }])

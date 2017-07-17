@@ -61,6 +61,10 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 		url : '/userlist',
 		templateUrl : 'modules/userlist/view/userlist.html',
 		controller : 'UserlistController'
+	}).state('userprofile',{
+		url : '/userprofile',
+		templateUrl : 'modules/userprofile/view/userprofile.html',
+		controller : 'UserprofileController'
 	});
 	$urlRouterProvider.otherwise('home');/**/
 

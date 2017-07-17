@@ -40,11 +40,13 @@ $scope.removeItem = function($index){
 }
  $scope.cartToWishList = function($index){
 	var itemMovedToWishlist = productsFactory.selectedProAry[$index];
-	productsFactory.cartToWishlistFn(itemMovedToWishlist);
+	//productsFactory.cartToWishlistFn(itemMovedToWishlist);
 	console.log(itemMovedToWishlist);
 }
 
-
+$scope.checkOut =function(){
+	
+}
 
 			
 

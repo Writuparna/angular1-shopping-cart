@@ -18,7 +18,7 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		wishCount : 0,
 		wishVar : false,
 		removeCartItemFn : removeCartItemFn,
-		cartToWishlistFn : cartToWishlistFn
+		//cartToWishlistFn : cartToWishlistFn
 		/*setAddtocartFn : setAddtocartFn,
 		getAddtocartFn : getAddtocartFn*/
 	};
@@ -128,12 +128,12 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		return productsObj.wishlistAry;
 	}
 
-	function cartToWishlistFn(movedItem){
+	/*function cartToWishlistFn(movedItem){
 		productsObj.wishlistAry.push(movedItem);
 		var count = 0;
 		var indexVal;
 		console.log(JSON.stringify(productsObj.movedItem));
-		/*for(var i = 0; i<productsObj.wishlistAry.length; i++){
+		for(var i = 0; i<productsObj.wishlistAry.length; i++){
 			if(productsObj.wishlistAry[i].p_id == productsObj.movedItem.proId){
 				count++;
 			}
@@ -148,8 +148,8 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 			}
 		}
 		$rootScope.wishcount = productsObj.wishlistAry.length;
-		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;*/
-	}
+		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
+	}*/
 
 
 	return productsObj;

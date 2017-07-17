@@ -1,11 +1,12 @@
 'use strict';
 
 /* Filters */
-angular.module('cartApp.login.services', []).factory('loginFactory',['$http','$q',function($http,$q){
+angular.module('cartApp.login.services', []).factory('loginFactory',['$http','$q','$state','signupFactory',function($http,$q,$state,signupFactory){
 
 
 	var loginObj = {
-		setLoginFormFn : setLoginFormFn
+		setLoginFormFn : setLoginFormFn,
+		fetchSingleDatatoServerFn : fetchSingleDatatoServerFn
 	};
 
 		function setLoginFormFn(useremail,userpass){
@@ -21,10 +22,13 @@ angular.module('cartApp.login.services', []).factory('loginFactory',['$http','$q
 				}
 			}).success(function(data, status, headers, config){
 				console.log(data);
-				if ( data.trim() === 'correct') {
-					window.location.href = 'http://localhost/cart/project/shopping-cart/';
+				if ( data.status === 'success') {
+					$state.go('userprofile');
+					//var x = loginObj.fetchSingleDatatoServerFn(data.data);
+					console.log('useremail: '+data.data.id);
+					localStorage.setItem('user id', data.data.id)
 				} else {
-					//$scope.errorMsg = "Invalid Email and Password";
+					console.log(data.msg);
 				}
 
 			}).error(function(){
@@ -32,6 +36,29 @@ angular.module('cartApp.login.services', []).factory('loginFactory',['$http','$q
 			});
 
 		}
+
+
+	function fetchSingleDatatoServerFn(userDetails){
+
+		var defer = $q.defer();
+
+		$http({
+			url : 'data/fetchsingleformdata.php',
+			method : 'POST',
+			data : {
+				'id' : localStorage.getItem('user id'),
+			}
+		}).success(function(data){
+			loginObj.fetchSingleFormData = data.data;
+			defer.resolve(data);
+		}).error(function(){
+			defer.reject('data can\'t be retained');
+		});
+
+		return defer.promise;
+	}
+
+
 
 	return loginObj;
 
