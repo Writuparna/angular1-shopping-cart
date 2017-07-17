@@ -44,7 +44,7 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 	}
 	$scope.logout =function(){
 		$window.localStorage.clear();
-		$state.go('home', null,{reload: true});
+		$state.go('home');
 	}
 
 
