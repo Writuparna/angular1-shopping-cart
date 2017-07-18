@@ -1,0 +1,28 @@
+<div class="container">
+	<h2>This is search list page</h2>
+
+	<div class="row">
+		<ul class="productList">
+			<li class="col-md-3" ng-repeat="product in sameProAry track by $index">
+				<div class=" well">
+					<div class="imgSec" ng-click="proIdFn($index)">
+						<img src="img/products/{{product.p_image}}" alt="">		
+					</div>
+					<div class="captionSec">
+						<h3 ng-click="proIdFn($index)">{{product.p_name}}</h3>	
+						<p>{{product.p_description}}</p>				
+						<div>
+							<span>Price: <b>{{product.p_price | currency}}</b></span>
+							<div class="btn-group pull-right">
+							  <button type="button" class="btn btn-default" ng-click="wishList($index)"><span class="glyphicon glyphicon-heart"></span></button>
+							  <button type="button" class="btn btn-default" ng-click="addToCart($index)"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</li>
+		</ul>
+	</div> 
+	<!-- {{productCatgId}}-->
+</div>

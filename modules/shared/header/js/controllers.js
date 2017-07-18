@@ -32,7 +32,6 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 				$scope.sameCatgAry.pop();
 			}
 		}
-		//console.log(JSON.stringify($scope.sameCatgAry));	
 	}
 	$scope.catgoryList = function($index, catgname){
 		console.log('header category: '+$index)
@@ -47,6 +46,13 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 		$state.go('home');
 	}
 
+	$scope.catSearchFn = function(){
+		var searchElem = document.getElementById('catSearch').value.toLowerCase();
+		console.log(searchElem);
+		productsFactory.setCarSearchFn(searchElem);
+		searchElem = "";
+		$state.go('search', null,{reload: true});
+	}
 
 
 

@@ -16,6 +16,7 @@ var cartApp = angular.module('cartApp',[
 	'cartApp.slider',
 	'cartApp.login',
 	'cartApp.userprofile',
+	'cartApp.search',
 ]);
 
 
@@ -45,6 +46,10 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 		url: '/productlist',
 		templateUrl: 'modules/product-list/view/productlist.html',
 		controller: 'ProductlistController'
+	}).state('search',{
+		url: '/search',
+		templateUrl: 'modules/search/view/search.html',
+		controller: 'SearchController'
 	}).state('productdetail',{
 		url : '/productdetail',
 		templateUrl : 'modules/product-detail/view/productdetail.html',

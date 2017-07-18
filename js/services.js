@@ -18,9 +18,8 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		wishCount : 0,
 		wishVar : false,
 		removeCartItemFn : removeCartItemFn,
-		//cartToWishlistFn : cartToWishlistFn
-		/*setAddtocartFn : setAddtocartFn,
-		getAddtocartFn : getAddtocartFn*/
+		setCarSearchFn : setCarSearchFn,
+		getCarSearchFn : getCarSearchFn
 	};
 
 	function productGetFn(){
@@ -128,34 +127,33 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		return productsObj.wishlistAry;
 	}
 
-	/*function cartToWishlistFn(movedItem){
-		productsObj.wishlistAry.push(movedItem);
-		var count = 0;
-		var indexVal;
-		console.log(JSON.stringify(productsObj.movedItem));
-		for(var i = 0; i<productsObj.wishlistAry.length; i++){
-			if(productsObj.wishlistAry[i].p_id == productsObj.movedItem.proId){
-				count++;
+	function setCarSearchFn(searchElem){
+		productsObj.searchResult = [];
+		
+		var allProducts = productsObj.productGetArray.productsInCart;
+		for(var i=0; i<allProducts.length; i++){
+			console.log(allProducts[i].p_name);
+			console.log(allProducts[i].p_name.indexOf(searchElem));
+			var count = 0;
+			if(allProducts[i].p_name.toLowerCase().indexOf(searchElem) > -1){
+				productsObj.searchResult.push(allProducts[i]);
 			}
-			if(count > 1){
-				var values = productsObj.wishlistAry.map(function(o) { 
-					 indexVal = o.p_name; 
-					 return indexVal;
-				});
-				var index = values.indexOf(indexVal);
-				productsObj.wishlistAry.splice(index,1);
-				productsObj.wishlistAry.pop();
-			}
-		}
-		$rootScope.wishcount = productsObj.wishlistAry.length;
-		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
-	}*/
+		console.log('searchResult setfn: '+ JSON.stringify(productsObj.searchResult));
 
+		}
+		//return searchResult;
+	}
+
+	function getCarSearchFn(){
+		console.log('searchResult: '+ JSON.stringify(productsObj.searchResult));
+		return productsObj.searchResult;
+	}
 
 	return productsObj;
 
 
 }]);
+
 
 
 
