@@ -1,7 +1,7 @@
 <div class="container">
 	<h2>This is cart page</h2>
 
-	<table class="table">
+	<table class="table tableProducts">
 		<thead>
 			<tr>
 				<th>id</th>
@@ -16,7 +16,7 @@
 		<tbody>
 			<tr ng-repeat="product in cartAry">
 				<td>{{product.proId}}</td>
-				<td>{{product.proImg}}</td>
+				<td><img src="img/products/{{product.proImg}}" alt=""></td>
 				<td>{{product.proName}}</td>
 				<td><input type="text" ng-model="newQty" ng-change="changeQtyFn(newQty,$index)">new quantity:{{newQtyScope}} old quantity:{{product.proQty}}</td>
 				<td>{{product.proPrice}}</td>
@@ -25,7 +25,7 @@
 				</td>
 				<td>
 					<button type="button" ng-click="removeItem($index)">Remove</button>
-					<button type="button" ng-click="cartToWishList($index)"><span class="glyphicon glyphicon-heart"></span>wish list</button>
+					<button type="button" ng-click="cartToWishList($index)"><span class="glyphicon glyphicon-heart"></span> Move to wish list</button>
 				</td>
 			</tr>
 		</tbody>

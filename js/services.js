@@ -73,7 +73,6 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 			if(count>1){
 				alert('Product already added to cart');
 				productsObj.selectedProAry.pop();
-				console.log('pop last');
 			}
 		}				
 		$rootScope.cartCount = productsObj.selectedProAry.length;
@@ -128,57 +127,34 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
  		var allProLength = productsObj.productGetArray.productsInCart;
  		for(var i=0; i<allProLength.length; i++){
  			if(allProLength[i].p_id==cartToWishObj){
- 				console.log('cartToWishObj: '+ allProLength[i].p_id);
- 				productsObj.wishlistAry.push(productsObj.wishlistObj);
-				var count = 0;
+ 				console.log('cartToWishObj: '+ JSON.stringify(allProLength[i]));
+ 				productsObj.wishlistAry.push(allProLength[i]);
+
+ 				var count = 0;
 				var indexVal;
-				for(var i = 0; i<productsObj.wishlistAry.length; i++){
-					if(productsObj.wishlistAry[i].p_id == productsObj.wishlistObj.p_id){
+				for(var j = 0; j<productsObj.wishlistAry.length; j++){
+					if(productsObj.wishlistAry[j].p_id == allProLength[i].p_id){
 						count++;
+						console.log('wish count setCartToWishFn: '+count);
 					}
 					if(count > 1){
 						var values = productsObj.wishlistAry.map(function(o) { 
 							 indexVal = o.p_name; 
 							 return indexVal;
 						});
-						var index = values.indexOf(indexVal);
-						console.log('wish array propety value: '+ JSON.stringify(indexVal));
-						console.log('wish array index: '+ index);
-						productsObj.wishlistAry.splice(index,1);
+						/*var index = values.indexOf(indexVal);
+						productsObj.wishlistAry.splice(index,1);*/
+						alert('Product already in wishlist');
 						productsObj.wishlistAry.pop();
 					}
 				}
 				$rootScope.wishcount = productsObj.wishlistAry.length;
 				productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
-				console.log('header controller wish count: '+ $rootScope.wishcount);
-				console.log('wish show hide: '+productsObj.wishVar);
  			}
  		}
-
-
-		/*productsObj.wishlistAry.push(productsObj.wishlistObj);
-		var count = 0;
-		var indexVal;
-		for(var i = 0; i<productsObj.wishlistAry.length; i++){
-			if(productsObj.wishlistAry[i].p_id == productsObj.wishlistObj.p_id){
-				count++;
-			}
-			if(count > 1){
-				var values = productsObj.wishlistAry.map(function(o) { 
-					 indexVal = o.p_name; 
-					 return indexVal;
-				});
-				var index = values.indexOf(indexVal);
-				console.log('wish array propety value: '+ JSON.stringify(indexVal));
-				console.log('wish array index: '+ index);
-				productsObj.wishlistAry.splice(index,1);
-				productsObj.wishlistAry.pop();
-			}
-		}
-		$rootScope.wishcount = productsObj.wishlistAry.length;
-		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
-		console.log('header controller wish count: '+ $rootScope.wishcount);
-		console.log('wish show hide: '+productsObj.wishVar);*/
+ 		console.log('setCartToWishFn '+JSON.stringify(productsObj.wishlistAry));
+		$rootScope.cartCount = productsObj.selectedProAry.length;	
+		console.log('$rootScope.cartCount setWishlistFn: '+ $rootScope.cartCount);
  	}
 
 
