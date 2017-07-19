@@ -36,10 +36,10 @@ angular.module('cartApp.productdetail.controller', []).controller('Productdetail
 		$scope.proname = $scope.singleProDetail.p_name;
 		$scope.proId = $scope.singleProDetail.p_id;
 		if($scope.qty > 0 && $scope.qty!=""){
-			$scope.cartItem.proId = $scope.proId;
-			$scope.cartItem.proImg = $scope.img;
-			$scope.cartItem.proName = $scope.proname;
-			$scope.cartItem.proPrice = $scope.proPrice;
+			$scope.cartItem.p_id = $scope.proId;
+			$scope.cartItem.p_image = $scope.img;
+			$scope.cartItem.p_name = $scope.proname;
+			$scope.cartItem.p_originalprice = $scope.proPrice;
 			$scope.cartItem.proQty = $scope.qty;
 			$scope.cartItem.totalPrice = $scope.qty*$scope.proPrice;
 			$scope.cartItem.grandTotal = 0;

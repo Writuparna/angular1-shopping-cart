@@ -16,7 +16,8 @@
 				<td><img src="img/products/{{product.p_image}}" alt="{{product.p_name}}"></td>
 				<td>{{product.p_name}}</td>
 				<td>
-					<button toggle-class type="button" ng-click="cartWishList($index)"><span class="glyphicon glyphicon-heart"></span> remove from wish list</button>
+					<button type="button" ng-click="removeFromWishList($index)"><span class="glyphicon glyphicon-delete"></span> remove from wish list</button>
+					<button toggle-class type="button" ng-click="moveWishToCart($index)"><span class="glyphicon glyphicon-shopping-cart"></span> Move to shopping cart</button>
 				</td>
 			</tr>
 		</tbody>

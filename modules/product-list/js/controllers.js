@@ -44,7 +44,7 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 	$scope.wishList = function($index){
 		
 		$scope.wishlistObj = ($scope.sameProAry[$index]);
-		console.log('wish list obj: '+ JSON.stringify($scope.wishlistObj));
+		/*console.log('wish list obj: '+ JSON.stringify($scope.wishlistObj));*/
 		productsFactory.setWishlistFn($scope.wishlistObj);
 	}
 
@@ -52,24 +52,23 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 	$scope.addToCart = function($index){
 		 var addToCartObj = ($scope.sameProAry[$index]);
 
-		 var proPrice = addToCartObj.p_originalprice;
+		var proPrice = addToCartObj.p_originalprice;
 		var qty = 1;
 		var img = addToCartObj.p_image;
 		var proname = addToCartObj.p_name;
 		var proId = addToCartObj.p_id;
 		var cartItemListpage = {};
 		if(qty > 0 && qty!=""){
-			cartItemListpage.proId = proId;
-			cartItemListpage.proImg = img;
-			cartItemListpage.proName = proname;
-			cartItemListpage.proPrice = proPrice;
+			cartItemListpage.p_id = proId;
+			cartItemListpage.p_image = img;
+			cartItemListpage.p_name = proname;
+			cartItemListpage.p_originalprice = proPrice;
 			cartItemListpage.proQty = qty;
 			cartItemListpage.totalPrice = qty*proPrice;
 			cartItemListpage.grandTotal = 0;
 			console.log('new object: '+ JSON.stringify(cartItemListpage));
 			console.log('list page cart: '+JSON.stringify(productsFactory.selectedProAry));
 			productsFactory.setCartObjFn(cartItemListpage);
-
 
 		}else{
 			alert('please enter quantity');

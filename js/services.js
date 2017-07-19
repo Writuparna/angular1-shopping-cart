@@ -20,7 +20,9 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		removeCartItemFn : removeCartItemFn,
 		setCarSearchFn : setCarSearchFn,
 		getCarSearchFn : getCarSearchFn,
-		setCartToWishFn : setCartToWishFn
+		setCartToWishFn : setCartToWishFn,
+		setMoveWishToCartFn : setMoveWishToCartFn,
+		removeWishItemFn : removeWishItemFn
 	};
 
 	function productGetFn(){
@@ -67,7 +69,7 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 
 		var count=0;
 		for(var i=0; i<productsObj.selectedProAry.length; i++){
-			if(productsObj.selectedProAry[i].proId == productsObj.cartObj.proId){
+			if(productsObj.selectedProAry[i].p_id == productsObj.cartObj.p_id){
 				count++;
 			}
 			if(count>1){
@@ -118,10 +120,19 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 	}
 
 	function getWishlistFn(){		
-		console.log('wish array: '+ JSON.stringify(productsObj.wishlistAry));
+		/*console.log('wish array: '+ JSON.stringify(productsObj.wishlistAry));*/
 		return productsObj.wishlistAry;
 	}
 
+
+	function removeWishItemFn(){
+		$rootScope.wishcount = productsObj.wishlistAry.length;
+		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;	
+	}
+
+
+
+	/*Cart to wish list item transfer*/
 
  	function setCartToWishFn(cartToWishObj){
  		var allProLength = productsObj.productGetArray.productsInCart;
@@ -157,6 +168,28 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		console.log('$rootScope.cartCount setWishlistFn: '+ $rootScope.cartCount);
  	}
 
+ 	/*move item wishlist to cart*/
+
+	function setMoveWishToCartFn(itemMovedToCart){
+		//productsObj.wishToCartItem = itemMovedToCart;
+
+		productsObj.selectedProAry.push(itemMovedToCart);
+
+		var count=0;
+		for(var i=0; i<productsObj.selectedProAry.length; i++){
+			if(productsObj.selectedProAry[i].p_id == itemMovedToCart.p_id){
+				count++;
+			}
+			if(count>1){
+				alert('Product already added to cart');
+				productsObj.selectedProAry.pop();
+			}
+		}				
+		$rootScope.cartCount = productsObj.selectedProAry.length;
+		$rootScope.wishcount = productsObj.wishlistAry.length;
+		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
+		console.log('selectedProAry: '+ JSON.stringify(productsObj.selectedProAry.length));
+	}
 
 /*Global search*/
 
