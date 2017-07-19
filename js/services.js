@@ -19,7 +19,8 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		wishVar : false,
 		removeCartItemFn : removeCartItemFn,
 		setCarSearchFn : setCarSearchFn,
-		getCarSearchFn : getCarSearchFn
+		getCarSearchFn : getCarSearchFn,
+		setCartToWishFn : setCartToWishFn
 	};
 
 	function productGetFn(){
@@ -43,7 +44,6 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 
 	function setProCatIdFn(CatId){
 		productsObj.singleCatIdValue = CatId;
-		//console.log('product category is from service: '+productsObj.singleCatIdValue);
 	}
 	function getProCatIdFn(){
 		return productsObj.singleCatIdValue;
@@ -54,10 +54,8 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 
 	function setProIdFn(proId){
 		productsObj.singleProId = proId;
-		//console.log('sigle product detail: '+ productsObj.singleProId);
 	}
 	function getProIdFn(){
-		//console.log('sigle product detail: '+ productsObj.singleProId);
 		return productsObj.singleProId;
 	}
 
@@ -118,34 +116,85 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
 		console.log('header controller wish count: '+ $rootScope.wishcount);
 		console.log('wish show hide: '+productsObj.wishVar);
-
 	}
 
-	function getWishlistFn(){
-		
+	function getWishlistFn(){		
 		console.log('wish array: '+ JSON.stringify(productsObj.wishlistAry));
 		return productsObj.wishlistAry;
 	}
 
+
+ 	function setCartToWishFn(cartToWishObj){
+ 		var allProLength = productsObj.productGetArray.productsInCart;
+ 		for(var i=0; i<allProLength.length; i++){
+ 			if(allProLength[i].p_id==cartToWishObj){
+ 				console.log('cartToWishObj: '+ allProLength[i].p_id);
+ 				productsObj.wishlistAry.push(productsObj.wishlistObj);
+				var count = 0;
+				var indexVal;
+				for(var i = 0; i<productsObj.wishlistAry.length; i++){
+					if(productsObj.wishlistAry[i].p_id == productsObj.wishlistObj.p_id){
+						count++;
+					}
+					if(count > 1){
+						var values = productsObj.wishlistAry.map(function(o) { 
+							 indexVal = o.p_name; 
+							 return indexVal;
+						});
+						var index = values.indexOf(indexVal);
+						console.log('wish array propety value: '+ JSON.stringify(indexVal));
+						console.log('wish array index: '+ index);
+						productsObj.wishlistAry.splice(index,1);
+						productsObj.wishlistAry.pop();
+					}
+				}
+				$rootScope.wishcount = productsObj.wishlistAry.length;
+				productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
+				console.log('header controller wish count: '+ $rootScope.wishcount);
+				console.log('wish show hide: '+productsObj.wishVar);
+ 			}
+ 		}
+
+
+		/*productsObj.wishlistAry.push(productsObj.wishlistObj);
+		var count = 0;
+		var indexVal;
+		for(var i = 0; i<productsObj.wishlistAry.length; i++){
+			if(productsObj.wishlistAry[i].p_id == productsObj.wishlistObj.p_id){
+				count++;
+			}
+			if(count > 1){
+				var values = productsObj.wishlistAry.map(function(o) { 
+					 indexVal = o.p_name; 
+					 return indexVal;
+				});
+				var index = values.indexOf(indexVal);
+				console.log('wish array propety value: '+ JSON.stringify(indexVal));
+				console.log('wish array index: '+ index);
+				productsObj.wishlistAry.splice(index,1);
+				productsObj.wishlistAry.pop();
+			}
+		}
+		$rootScope.wishcount = productsObj.wishlistAry.length;
+		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
+		console.log('header controller wish count: '+ $rootScope.wishcount);
+		console.log('wish show hide: '+productsObj.wishVar);*/
+ 	}
+
+
+/*Global search*/
+
 	function setCarSearchFn(searchElem){
-		productsObj.searchResult = [];
-		
+		productsObj.searchResult = [];		
 		var allProducts = productsObj.productGetArray.productsInCart;
 		for(var i=0; i<allProducts.length; i++){
-			console.log(allProducts[i].p_name);
-			console.log(allProducts[i].p_name.indexOf(searchElem));
 			var count = 0;
 			if(allProducts[i].p_name.toLowerCase().indexOf(searchElem) > -1){
 				productsObj.searchResult.push(allProducts[i]);
 			}
-		console.log('searchResult setfn: '+ JSON.stringify(productsObj.searchResult));
-
 		}
-		//return searchResult;
 	}
-
 	function getCarSearchFn(){
-		console.log('searchResult: '+ JSON.stringify(productsObj.searchResult));
 		return productsObj.searchResult;
 	}
 

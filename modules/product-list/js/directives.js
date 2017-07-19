@@ -3,9 +3,15 @@
 /* Directives */
 
 
-angular.module('myApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
-    };
-  }]);
+angular.module('cartApp.productlist.directive', []).directive('toggleClass', [function(){
+
+	return{
+		restrict : 'AEC',
+		link : function($scope,element,attrs){
+			element.bind('click', function(){
+				element.toggleClass("toggleBtn");
+			})
+		}
+	}
+  
+}]);

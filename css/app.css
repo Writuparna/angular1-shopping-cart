@@ -36,6 +36,8 @@ ul{margin: 0; padding: 0;}
 ul:after{display: block; clear: both; content: "";}
 ul li{list-style: none;}
 a{cursor: pointer;}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, 
+.btn:active:focus, .btn:focus{outline: none !important;}
 
 .productList li .imgSec{height: 200px; overflow: hidden; background: #fff;}
 .active{color: #fff;}
@@ -51,3 +53,6 @@ a{cursor: pointer;}
 .slider .carousel-control.left, .slider .carousel-control.right{background: none}
 
 .productList li h3{font-size: 16px; cursor: pointer;}
+
+button.toggleBtn span.glyphicon-heart{color: #e00;}
+button.toggleBtn span.glyphicon-shopping-cart{color: #ffe000;}

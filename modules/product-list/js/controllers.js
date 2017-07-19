@@ -46,6 +46,16 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 		$scope.wishlistObj = ($scope.sameProAry[$index]);
 		console.log('wish list obj: '+ JSON.stringify($scope.wishlistObj));
 
+		/*var wishBtns = $('.wishBtn');
+		for (var i = 0; i < wishBtns.length; i++) {
+			(wishBtns[i]).click(function(){
+				if($(this).hasClass('wishAdd')){
+					$(this).removeClass('wishAdd')
+				}else{
+					$(this).addClass('wishAdd')
+				}				
+			});		
+		};*/
 		productsFactory.setWishlistFn($scope.wishlistObj);
 	}
 

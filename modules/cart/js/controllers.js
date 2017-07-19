@@ -31,8 +31,9 @@ $scope.removeItem = function($index){
 
 }
  $scope.cartToWishList = function($index){
-	var itemMovedToWishlist = productsFactory.selectedProAry[$index];
+	var itemMovedToWishlist = productsFactory.selectedProAry[$index].proId;
 	console.log(itemMovedToWishlist);
+	productsFactory.setCartToWishFn(itemMovedToWishlist);
 }
 
 $scope.checkOut =function(){
