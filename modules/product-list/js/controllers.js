@@ -3,12 +3,9 @@
 angular.module('cartApp.productlist.controller', []).controller('ProductlistController', ['$scope','productsFactory','$state',function($scope,productsFactory,$state){
 
 	$scope.productCatgId = productsFactory.getProCatIdFn();
-	console.log('product list page: '+ $scope.productCatgId);
+	//console.log('product list page: '+ $scope.productCatgId);
 	$scope.sameProAry = [];
 
-	/*$scope.singleProId = productsFactory.getProIdFn();
-	console.log('singleProId: '+ $scope.singleProId);
-	$scope.selectedProAry = [];*/
 	$scope.cartItemListpage = {};
 
 
@@ -25,29 +22,26 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 	}
 	$scope.sameCatgProductFn();
 	 function sortSameProducts(allProList){
-		//console.log(JSON.stringify(allProList));
 		for(var i=0; i<allProList.length; i++){
 			if($scope.productCatgId==allProList[i].p_catg_id){
 				$scope.sameProAry.push(allProList[i]);
 			}
 		}
-		//console.log(JSON.stringify($scope.sameProAry));
 	}
 	$scope.proIdFn = function($index){
 		$scope.proId = $scope.sameProAry[$index].p_id;
-		console.log('product id: '+ $scope.proId);
 		productsFactory.setProIdFn($scope.proId);
 		$state.go('productdetail');
 	}
 
 
-	$scope.wishList = function($index){
-		
+	$scope.wishList = function($index){		
 		$scope.wishlistObj = ($scope.sameProAry[$index]);
-		/*console.log('wish list obj: '+ JSON.stringify($scope.wishlistObj));*/
 		productsFactory.setWishlistFn($scope.wishlistObj);
+		//console.log('wish list Obj: '+ JSON.stringify($scope.wishlistObj));
+		$state.go($state.current, null, {reload:true});
 	}
-
+	$scope.wishActive = productsFactory.productInWishlistFn();
 
 	$scope.addToCart = function($index){
 		 var addToCartObj = ($scope.sameProAry[$index]);
@@ -66,8 +60,8 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 			cartItemListpage.proQty = qty;
 			cartItemListpage.totalPrice = qty*proPrice;
 			cartItemListpage.grandTotal = 0;
-			console.log('new object: '+ JSON.stringify(cartItemListpage));
-			console.log('list page cart: '+JSON.stringify(productsFactory.selectedProAry));
+			/*console.log('new object: '+ JSON.stringify(cartItemListpage));
+			console.log('list page cart: '+JSON.stringify(productsFactory.selectedProAry));*/
 			productsFactory.setCartObjFn(cartItemListpage);
 
 		}else{

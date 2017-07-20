@@ -22,7 +22,9 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		getCarSearchFn : getCarSearchFn,
 		setCartToWishFn : setCartToWishFn,
 		setMoveWishToCartFn : setMoveWishToCartFn,
-		removeWishItemFn : removeWishItemFn
+		removeWishItemFn : removeWishItemFn,
+		productInWishlistFn : productInWishlistFn,
+		productIn : false
 	};
 
 	function productGetFn(){
@@ -111,12 +113,28 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 				console.log('wish array index: '+ index);
 				productsObj.wishlistAry.splice(index,1);
 				productsObj.wishlistAry.pop();
+				productsObj.productIn = false;
 			}
 		}
 		$rootScope.wishcount = productsObj.wishlistAry.length;
 		productsObj.wishVar = ($rootScope.wishcount > 0) ? true : false;
-		console.log('header controller wish count: '+ $rootScope.wishcount);
-		console.log('wish show hide: '+productsObj.wishVar);
+		console.log('wish list ary: '+JSON.stringify(productsObj.wishlistAry));
+		//console.log('product In wish list ary: '+productsObj.productIn);
+
+		/*product In Wish list Fn defination*/
+		for(var i = 0; i<productsObj.wishlistAry.length; i++){
+			if(productsObj.wishlistAry[i].p_id == productsObj.wishlistObj.p_id){
+				productsObj.productIn = true;				
+			}else{
+				productsObj.productIn = false;								
+			}
+		}
+
+	}
+
+	function productInWishlistFn(){
+		console.log('productsObj.productIn: '+ productsObj.productIn);
+		return productsObj.productIn;
 	}
 
 	function getWishlistFn(){		

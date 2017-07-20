@@ -54,5 +54,6 @@ angular.module('cartApp.productdetail.controller', []).controller('Productdetail
 	}
 	console.log('selectedPro Obj: '+JSON.stringify($scope.cartItem));
 
+	productsFactory.productInWishlistFn();
 
 }]);
