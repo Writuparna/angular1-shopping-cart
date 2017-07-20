@@ -24,7 +24,7 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		setMoveWishToCartFn : setMoveWishToCartFn,
 		removeWishItemFn : removeWishItemFn,
 		productInWishlistFn : productInWishlistFn,
-		productIn : false
+		//productIn : false
 	};
 
 	function productGetFn(){
@@ -113,7 +113,7 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 				console.log('wish array index: '+ index);
 				productsObj.wishlistAry.splice(index,1);
 				productsObj.wishlistAry.pop();
-				productsObj.productIn = false;
+				$rootScope.productIn = false;
 			}
 		}
 		$rootScope.wishcount = productsObj.wishlistAry.length;
@@ -124,9 +124,9 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		/*product In Wish list Fn defination*/
 		for(var i = 0; i<productsObj.wishlistAry.length; i++){
 			if(productsObj.wishlistAry[i].p_id == productsObj.wishlistObj.p_id){
-				productsObj.productIn = true;				
+				$rootScope.productIn = true;				
 			}else{
-				productsObj.productIn = false;								
+				$rootScope.productIn = false;								
 			}
 		}
 

@@ -39,9 +39,10 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 		$scope.wishlistObj = ($scope.sameProAry[$index]);
 		productsFactory.setWishlistFn($scope.wishlistObj);
 		//console.log('wish list Obj: '+ JSON.stringify($scope.wishlistObj));
-		$state.go($state.current, null, {reload:true});
+		 $scope.selected = $index; 
+		//$state.go($state.current, null, {reload:true});
 	}
-	$scope.wishActive = productsFactory.productInWishlistFn();
+	//$scope.wishActive = productsFactory.productInWishlistFn();
 
 	$scope.addToCart = function($index){
 		 var addToCartObj = ($scope.sameProAry[$index]);

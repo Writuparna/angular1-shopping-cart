@@ -13,7 +13,9 @@
 						<div>
 							<span>Price: <b>{{product.p_price | currency}}</b></span>
 							<div class="btn-group pull-right">
-							  <button type="button" class="btn btn-default" id="wishBtn" ng-click="wishList($index)" ng-class="wishActive == true ? 'wishAdd' : 'wishRemove'" ><span ><i class="glyphicon glyphicon-heart"></i></span></button>
+							  <button type="button" class="btn btn-default" id="wishBtn" ng-click="wishList($index)" ng-class="{select: $index == selected}"> 
+							  	<span ng-class="productIn == true ? 'wishAdd' : 'wishRemove'"> <i class="glyphicon glyphicon-heart"></i> </span> 
+							  </button>
 							  <button type="button" class="btn btn-default" id="cartBtn" ng-click="addToCart($index)"><span class="glyphicon glyphicon-shopping-cart"></span></button><!-- ng-class="wishActive == true && $index == selected ? 'wishAdd' : 'wishRemove'" -->
 							</div>
 						</div>
