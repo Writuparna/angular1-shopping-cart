@@ -5,7 +5,8 @@
     </div>
     <ul class="nav navbar-nav">
       <li ng-repeat="product in sameCatgAry" ng-class="{active : activeMenu === '{{product.p_catg_id}}'}">
-        <a ng-click="catgoryList($index, product.p_catg_id)">{{product.p_catg_name}}</a>
+        <!--  ng-click="catgoryList($index, product.p_catg_id)" -->
+        <a ng-href="#/productlist/{{product.p_catg_id}}">{{product.p_catg_name}}</a>
       </li>
     </ul>
     <form class="navbar-form navbar-left">

@@ -146,13 +146,15 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 	}
 
 	function ngcalssClickId (argument) {
+		console.log('argument', argument);
+		console.log('productsObj.wishlistAry', productsObj.wishlistAry);
+		var matchId = false;
 		for(var i = 0; i<productsObj.wishlistAry.length; i++){
 			if(productsObj.wishlistAry[i].p_id == argument){				
-				return true;			
-			}else{
-				return false;								
+				matchId = true;			
 			}
 		}
+		return matchId; 
 	}
 
 	function getWishlistFn(){		

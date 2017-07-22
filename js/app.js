@@ -42,16 +42,16 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 		url : '/login',
 		templateUrl : 'modules/login/view/login.html',
 		controller : 'LoginController'
-	}).state('productlist',{
-		url: '/productlist',
+	}).state('productlist/:id',{
+		url: '/productlist/:id',
 		templateUrl: 'modules/product-list/view/productlist.html',
 		controller: 'ProductlistController'
 	}).state('search',{
 		url: '/search',
 		templateUrl: 'modules/search/view/search.html',
 		controller: 'SearchController'
-	}).state('productdetail',{
-		url : '/productdetail',
+	}).state('productdetail/:id',{
+		url : '/productdetail/:id',
 		templateUrl : 'modules/product-detail/view/productdetail.html',
 		controller : 'ProductdetailController'
 	}).state('cart',{

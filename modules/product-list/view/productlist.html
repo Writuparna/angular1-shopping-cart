@@ -8,15 +8,16 @@
 						<img src="img/products/{{product.p_image}}" alt="">		
 					</div>
 					<div class="captionSec">
-						<h3 ng-click="proIdFn($index)">{{product.p_name}}</h3>	
+						<!-- <h3 ng-click="proIdFn($index)">{{product.p_name}}</h3> -->	
+						<a ng-href="#/productdetail/{{product.p_id}}">{{product.p_name}}</a>
 						<p>{{product.p_description}}</p>				
 						<div>
 							<span>Price: <b>{{product.p_price | currency}}</b></span>
 							<div class="btn-group pull-right">
-							  <button type="button" class="btn btn-default" ng-class="sameProwishId(clickedProId) ? 'wishAdd' : 'wishRemove'" ng-click="wishList($index)"> 
+							  <button type="button" class="btn btn-default" ng-class="sameProwishId(product.p_id) ? 'wishAdd' : 'wishRemove'" ng-click="wishList($index)"> 
 							   <i class="glyphicon glyphicon-heart"></i>
 							  </button>
-							  <button type="button" class="btn btn-default" id="cartBtn" ng-click="addToCart($index)"><span class="glyphicon glyphicon-shopping-cart"></span></button><!-- ng-class="wishActive == true && $index == selected ? 'wishAdd' : 'wishRemove'" -->
+							  <button type="button" class="btn btn-default" id="cartBtn" ng-click="addToCart($index)"><span class="glyphicon glyphicon-shopping-cart"></span></button>
 							</div>
 						</div>
 					</div>

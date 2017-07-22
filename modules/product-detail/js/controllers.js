@@ -2,7 +2,8 @@
 
 angular.module('cartApp.productdetail.controller', []).controller('ProductdetailController', ['$scope','$rootScope','productsFactory','$state',function($scope,$rootScope,productsFactory,$state){
 
-	$scope.singleProId = productsFactory.getProIdFn();
+	//$scope.singleProId = productsFactory.getProIdFn();
+	$scope.singleProId = $state.params.id;
 	console.log('singleProId: '+ $scope.singleProId);
 	$scope.selectedProAry = [];
 	$scope.cartItem = {};

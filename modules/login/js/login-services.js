@@ -26,7 +26,7 @@ angular.module('cartApp.login.services', []).factory('loginFactory',['$http','$q
 					$state.go('userprofile');
 					//var x = loginObj.fetchSingleDatatoServerFn(data.data);
 					console.log('useremail: '+data.data.id);
-					localStorage.setItem('user id', data.data.id)
+					localStorage.setItem('userid', data.data.id)
 				} else {
 					console.log(data.msg);
 				}
@@ -46,7 +46,7 @@ angular.module('cartApp.login.services', []).factory('loginFactory',['$http','$q
 			url : 'data/fetchsingleformdata.php',
 			method : 'POST',
 			data : {
-				'id' : localStorage.getItem('user id'),
+				'id' : localStorage.getItem('userid'),
 			}
 		}).success(function(data){
 			loginObj.fetchSingleFormData = data.data;
