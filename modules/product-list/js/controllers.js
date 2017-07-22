@@ -38,10 +38,26 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 	$scope.wishList = function($index){		
 		$scope.wishlistObj = ($scope.sameProAry[$index]);
 		productsFactory.setWishlistFn($scope.wishlistObj);
-		//console.log('wish list Obj: '+ JSON.stringify($scope.wishlistObj));
-		 $scope.selected = $index; 
+		console.log('index: '+ $index);
+		$scope.selected = $index; 
+		console.log('wishlistObj: '+JSON.stringify($scope.wishlistObj.p_id));
+		$scope.clickedProId = $scope.wishlistObj.p_id;
 		//$state.go($state.current, null, {reload:true});
 	}
+	$scope.sameProwishId = function(clickedProId){
+		console.log('ng-class: '+clickedProId);
+		//var clickedProId = clickedProId;
+		productsFactory.ngcalssClickId(clickedProId);
+		console.log(productsFactory.ngcalssClickId(clickedProId));
+		if(productsFactory.ngcalssClickId(clickedProId)==true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+
 	//$scope.wishActive = productsFactory.productInWishlistFn();
 
 	$scope.addToCart = function($index){
@@ -69,16 +85,9 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 			alert('please enter quantity');
 		}
 
-
-
-
-
-
-
-
-
-
-
 	}
 
 }]);
+
+
+

@@ -24,6 +24,7 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		setMoveWishToCartFn : setMoveWishToCartFn,
 		removeWishItemFn : removeWishItemFn,
 		productInWishlistFn : productInWishlistFn,
+		ngcalssClickId	: ngcalssClickId
 		//productIn : false
 	};
 
@@ -123,8 +124,15 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 
 		/*product In Wish list Fn defination*/
 		for(var i = 0; i<productsObj.wishlistAry.length; i++){
-			if(productsObj.wishlistAry[i].p_id == productsObj.wishlistObj.p_id){
-				$rootScope.productIn = true;				
+			if(productsObj.wishlistAry[i].p_id == productsObj.wishlistObj.p_id){				
+				productsObj.wishlistObj.p_class = productsObj.wishlistObj.p_id;
+				if(productsObj.wishlistObj.p_class == productsObj.wishlistAry[i].p_id){
+					$rootScope.productIn = true;
+					console.log('class condition in service: '+$rootScope.productIn)
+					console.log('p_class: '+productsObj.wishlistObj.p_class)
+					console.log('p_class n p_id: '+ productsObj.wishlistAry[i].p_id)
+				}
+
 			}else{
 				$rootScope.productIn = false;								
 			}
@@ -135,6 +143,16 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 	function productInWishlistFn(){
 		console.log('productsObj.productIn: '+ productsObj.productIn);
 		return productsObj.productIn;
+	}
+
+	function ngcalssClickId (argument) {
+		for(var i = 0; i<productsObj.wishlistAry.length; i++){
+			if(productsObj.wishlistAry[i].p_id == argument){				
+				return true;			
+			}else{
+				return false;								
+			}
+		}
 	}
 
 	function getWishlistFn(){		
