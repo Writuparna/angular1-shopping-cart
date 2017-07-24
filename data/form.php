@@ -10,6 +10,11 @@ $phone = mysqli_real_escape_string($connect, $data->userphno);
 $email = mysqli_real_escape_string($connect, $data->useremail);
 $password = mysqli_real_escape_string($connect, $data->userpass);
 $confirmpassword = mysqli_real_escape_string($connect, $data->userconfirmpass);
+$country = mysqli_real_escape_string($connect, $data->country);
+$state = mysqli_real_escape_string($connect, $data->state);
+$city = mysqli_real_escape_string($connect, $data->city);
+$pincode = mysqli_real_escape_string($connect, $data->pincode);
+$address = mysqli_real_escape_string($connect, $data->address);
 
 /*$name = $_POST['username'];
 $phone = $_POST['userphno'];
@@ -18,7 +23,7 @@ $password = $_POST['userpass'];
 $confirmpassword = $_POST['userconfirmpass'];*/
 
 
-$abc = "INSERT INTO user_table(name, phone, email, password, confirmpass) VALUES ('".$name."','".$phone."','".$email."','".$password."','".$confirmpassword."')";
+$abc = "INSERT INTO user_table(name, phone, email, password, confirmpass) VALUES ('".$name."','".$phone."','".$email."','".$password."','".$confirmpassword."','".$country."','".$state."','".$city."','".$pincode."','".$address."')";
 
 
 

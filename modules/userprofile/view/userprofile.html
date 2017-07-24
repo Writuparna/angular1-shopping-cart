@@ -16,33 +16,33 @@
 				</ul>
 			</div>
 		</div>
-		<form method="get" accept-charset="utf-8" class="well">
+		<form method="get" accept-charset="utf-8" class="well" ng-submit="submitAddress(country,city,state,pincode,address)">
 			<h3>Delivery address</h3>
-			<div class="form-group">
+			<div class="form-group userAddress">
 				<div class="row">
-					<div class="col-sm-12">
-						<textarea class="form-control"></textarea>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="country" placeholder="Country">
+					</div>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="state" placeholder="State">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" ng-model="city" placeholder="City">
 					</div>
 					<div class="col-sm-6">
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<input type="text" class="form-control">
-					</div>
-					<div class="col-sm-6">
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" ng-model="pincode" placeholder="Pincode">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" class="btn btn-primary">
+						<textarea class="form-control" ng-model="address" placeholder="Full address"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-primary" >Submit</button>
 					</div>
 				</div>
 			</div>

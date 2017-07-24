@@ -3,8 +3,8 @@
 angular.module('cartApp.search.controller', []).controller('SearchController', ['$scope','productsFactory','$state',function($scope,productsFactory,$state){
 
 
-	$scope.searchString = $state.params.id;
-	console.log('searchString: '+$state.params.id);
+	$scope.searchString = $state.params.id.toLowerCase();
+	//console.log('searchString: '+$scope.searchString);
 	productsFactory.setCarSearchFn($scope.searchString);
 		
 	$scope.sameProAry = productsFactory.getCarSearchFn();

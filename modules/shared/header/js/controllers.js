@@ -42,27 +42,37 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 		$scope.activeMenu = catgname;
 		$state.go('productlist', null,{reload: true});
 	}
-	$scope.logout =function(){
-		$window.localStorage.clear();
-		$state.go('home');
+	$rootScope.loginShow = true;
+	$rootScope.logoutShow = false;	
+	
+	$scope.login = function(){	
+		loginFactory.fetchSingleDatatoServerFn()
+			.then(function(loginData){
+				console.log('loginData login page: '+ JSON.stringify(loginData));
+				if(loginData.status == 'fail'){
+					$state.go('login');
+					console.log('hello1');
+				}else if(loginData.status == 'success'){
+					//$scope.logoutShow = true;	
+					console.log('hello2');
+				}
+			},function(){
+				console.log('login data cant retrieved');
+			})
 	}
-
-
-	/*$scope.catSearchFn = function(){
-		var searchElem = document.getElementById('catSearch').value.toLowerCase();
-		console.log(searchElem);
-		productsFactory.setCarSearchFn(searchElem);
-		searchElem = "";
-		$state.go('search', null,{reload: true});
-	}*/
-/*	$scope.catSearchFn = function(){}*/
-
-		/*$scope.searchString = $state.params.id;
-		console.log('searchString: '+$scope.searchString);
-		productsFactory.setCarSearchFn($scope.searchString);*/
-		
-		/*$scope.catSearchFn();*/
-
+	$scope.logout =function(){
+		$rootScope.loginShow = true;
+		$rootScope.logoutShow = false;	
+		loginFactory.fetchSingleDatatoServerFn()
+			.then(function(loginData){
+				if(loginData.status=='success'){
+					localStorage.removeItem('userid');
+					$state.go('home');		
+				}
+			},function(){
+				console.log('login data cant retrieved');
+			});
+	}
 
 
 }]);

@@ -13,16 +13,18 @@
       <div class="form-group">
         <input type="text" id="catSearch" class="form-control" ng-model="searchString" placeholder="Search">
       </div>
-      <a ng-href="#/search/{{searchString}}">{{searchString}}Submit</a>
-     <!--  <button type="submit" id="catSearchBtn" ng-click="catSearchFn()" class="btn btn-default">Submit</button> -->
+      <a class="btn btn-default" ng-href="#/search/{{searchString}}">Submit</a>
+     <!--  <button type="submit" id="catSearchBtn" ng-click="catSearchFn()" >Submit</button> -->
     </form>
     <ul class="nav navbar-nav navbar-right">
       <li ng-class="{active : activeMenu === 'userlist'}"><a href="#userlist" ng-click="activeMenu = 'userlist'"><span class="glyphicon glyphicon-user"></span> Userlist</a></li>
       <li ng-class="{active : activeMenu === 'cart'}"><a href="#cart" ng-click="activeMenu = 'cart'"><span class="glyphicon glyphicon-shopping-cart"></span>{{cartCount}}</a></li>
       <li ng-class="{active : activeMenu === 'wishcount'}"><a href="#wishlist" ng-click="activeMenu = 'wishcount'"><span class="glyphicon glyphicon-heart"></span>{{wishcount}}</a></li>
       <li ng-class="{active : activeMenu === 'signup'}"><a href="#signup" ng-click="activeMenu = 'signup'"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li ng-class="{active : activeMenu === 'login'}"><a href="#login" ng-click="activeMenu = 'login'"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li><a ng-click="logout()"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+      <!-- <li ng-class="{active : activeMenu === 'login'}"><a href="#login" ng-click="activeMenu = 'login'"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+      <li ng-show="loginShow" ng-class="{active : activeMenu === 'login'}"><a ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li ng-show="logoutShow" ><a ng-click="logout()"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+      <li><a ng-href="#/userprofile">User profile</a></li>
     </ul>
 
   </div>

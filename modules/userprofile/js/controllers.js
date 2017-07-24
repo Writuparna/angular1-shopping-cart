@@ -16,6 +16,12 @@ angular.module('cartApp.userprofile.controller', []).controller('UserprofileCont
 			})
 	}
 	$scope.userListFn();
+
+
+	$scope.submitAddress = function(country,city,state,pincode,address){
+		console.log('country: '+country+' city: '+city+' state: '+state+' pincode: '+pincode+' address: '+address)
+		loginFactory.loginAddressFn(country,city,state,pincode,address);
+	}
 	
 
 }]);

@@ -1,15 +1,11 @@
 'use strict';
 
 angular.module('cartApp.productlist.controller', []).controller('ProductlistController', ['$scope','productsFactory','$state',function($scope,productsFactory,$state){
-	//console.log('$state.params', $state.params);
-	//$scope.productCatgId = productsFactory.getProCatIdFn();
-	//console.log('product list page: '+ $scope.productCatgId);
+	
 	$scope.sameProAry = [];
 
 	$scope.cartItemListpage = {};
 
-	//$scope.proCatgId = $scope.sameCatgAry[$index].p_catg_id;
-	//console.log('category list:'+ $scope.proCatgId);
 	$scope.productCatgId = $state.params.id;
 	$scope.activeMenu = $state.params.id;
 		
@@ -49,10 +45,6 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 		//$state.go($state.current, null, {reload:true});
 	}
 	$scope.sameProwishId = function(pid){
-		//console.log('ng-class: '+clickedProId);
-		//var clickedProId = clickedProId;
-		//productsFactory.ngcalssClickId(clickedProId);
-		//console.log(productsFactory.ngcalssClickId(clickedProId));
 		if(productsFactory.ngcalssClickId(pid)==true){
 			console.log('true')
 			return true;
@@ -62,9 +54,6 @@ angular.module('cartApp.productlist.controller', []).controller('ProductlistCont
 		}
 	}
 
-
-
-	//$scope.wishActive = productsFactory.productInWishlistFn();
 
 	$scope.addToCart = function($index){
 		 var addToCartObj = ($scope.sameProAry[$index]);
