@@ -2,6 +2,11 @@
 
 angular.module('cartApp.search.controller', []).controller('SearchController', ['$scope','productsFactory','$state',function($scope,productsFactory,$state){
 
+
+	$scope.searchString = $state.params.id;
+	console.log('searchString: '+$state.params.id);
+	productsFactory.setCarSearchFn($scope.searchString);
+		
 	$scope.sameProAry = productsFactory.getCarSearchFn();
 	/*console.log('product list page: '+ $scope.productCatgId);
 	$scope.sameProAry = [];*/

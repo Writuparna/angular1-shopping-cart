@@ -6,6 +6,7 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 
 	$scope.cartAry = [];
 	$scope.sameCatgAry = [];
+	$scope.searchString = "";
 
 	$scope.cartAryFn = function(){
 
@@ -46,14 +47,21 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 		$state.go('home');
 	}
 
-	$scope.catSearchFn = function(){
+
+	/*$scope.catSearchFn = function(){
 		var searchElem = document.getElementById('catSearch').value.toLowerCase();
 		console.log(searchElem);
 		productsFactory.setCarSearchFn(searchElem);
 		searchElem = "";
 		$state.go('search', null,{reload: true});
-	}
+	}*/
+/*	$scope.catSearchFn = function(){}*/
 
+		/*$scope.searchString = $state.params.id;
+		console.log('searchString: '+$scope.searchString);
+		productsFactory.setCarSearchFn($scope.searchString);*/
+		
+		/*$scope.catSearchFn();*/
 
 
 

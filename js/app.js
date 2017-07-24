@@ -46,8 +46,8 @@ angular.module('cartApp').config(['$urlRouterProvider', '$stateProvider', '$loca
 		url: '/productlist/:id',
 		templateUrl: 'modules/product-list/view/productlist.html',
 		controller: 'ProductlistController'
-	}).state('search',{
-		url: '/search',
+	}).state('search/:id',{
+		url: '/search/:id',
 		templateUrl: 'modules/search/view/search.html',
 		controller: 'SearchController'
 	}).state('productdetail/:id',{

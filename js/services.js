@@ -232,8 +232,10 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 /*Global search*/
 
 	function setCarSearchFn(searchElem){
+		console.log('searchElem: '+ searchElem);
 		productsObj.searchResult = [];		
 		var allProducts = productsObj.productGetArray.productsInCart;
+		/*console.log('searchElem: '+ JSON.stringify(allProducts));*/
 		for(var i=0; i<allProducts.length; i++){
 			var count = 0;
 			if(allProducts[i].p_name.toLowerCase().indexOf(searchElem) > -1){
@@ -242,6 +244,7 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		}
 	}
 	function getCarSearchFn(){
+		console.log('search result: '+ productsObj.searchResult);
 		return productsObj.searchResult;
 	}
 
