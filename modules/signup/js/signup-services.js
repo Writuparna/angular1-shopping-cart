@@ -8,6 +8,8 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
 			getSignupFormFn : getSignupFormFn,
 			signupArray : [],
 			fetchDatatoServerFn : fetchDatatoServerFn,
+			loginAddressFn : loginAddressFn,
+			updateUserFn : updateUserFn
 		};
 
 		function setSignupFormFn(username,userphno,useremail,userpass,userconfirmpass){
@@ -55,12 +57,62 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
 		}).success(function(data){
 			signupObj.fetchFormData = data;
 			defer.resolve(data);
+			console.log('All fetched data from signup: '+data)
 		}).error(function(){
 			defer.reject('data can\'t be retained');
 		});
 
 		return defer.promise;
 	}
+
+	
+	function loginAddressFn(country,city,state,pincode,address,useremail){
+		var defer = $q.defer();
+		$http({
+			url : 'data/updateform.php',
+			method : 'PUT',
+			data :{
+				'useremail' : useremail,
+				'country' : country,
+				'city' : city,
+				'state' : state,
+				'pincode' : pincode,
+				'address' : address
+			}
+		}).success(function(data){
+			defer.resolve(data);
+			console.log('data: '+data);
+		}).error(function(){
+			defer.reject('data can\'t be retrieved');
+		});
+		return defer.promise;
+	}
+
+ 	function updateUserFn(username,userphno,country,city,state,pincode,address,useremail){
+ 		
+ 		var defer = $q.defer();
+ 		$http({
+ 			url : 'data/userprofileupdate.php',
+ 			method : 'PUT',
+ 			data : {
+				'useremail' : useremail,
+				'username' : username,
+				'userphno' : userphno,
+				'country' : country,
+				'city' : city,
+				'state' : state,
+				'pincode' : pincode,
+				'address' : address 				
+ 			}
+ 		}).success(function(data){
+ 			defer.resolve(data);
+ 			console.log('update profile data: '+ data)
+ 		}).error(function(){
+ 			defer.reject('data can\'t be retrieved');
+ 		});
+ 		return defer.promise;
+ 	}
+
 
 	return signupObj;
 

@@ -3,8 +3,8 @@
 	<div class="row">
 		<div class="col-sm-12 ">
 		<h2>This is user profile page</h2>
-		
-		<div class="well">
+		<button ng-click="showFullForm()" ng-hide="hideButton" type="button" class="btn btn-primary">Edit</button>
+		<div ng-show="hideUserDetail" class="well">
 			<div class='row'>
 				<div class="col-sm-12">
 					<h3>Login detail</h3>
@@ -13,10 +13,65 @@
 					<li><b>Name: </b> {{userListAry.name}}</li>
 					<li><b>Phone number: </b> {{userListAry.phone}}</li>
 					<li><b>Email: </b> {{userListAry.email}}</li>
+					<li><b>Address: </b> <br>
+						{{userListAry.fulladdress}}<br>
+						{{userListAry.country}}<br>
+						{{userListAry.state}}<br>
+						{{userListAry.city}}: {{userListAry.pincode}}<br>
+					</li>
 				</ul>
 			</div>
 		</div>
-		<form method="get" accept-charset="utf-8" class="well" ng-submit="submitAddress(country,city,state,pincode,address)">
+		
+		<form ng-show="showUpdateForm" method="get" accept-charset="utf-8" class="well" ng-submit="updateUser(username,userphno,country,city,state,pincode,address)">
+			<h3>Update user detail</h3>
+			<div class="form-group userAddress">
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Name</label>
+						<input type="text" class="form-control" value="{{userListAry.name}}" ng-model="username" placeholder="{{userListAry.name}}">
+					</div>
+					<div class="col-sm-6">
+						<label>Phone number</label>
+						<input type="tel" class="form-control" value="{{userListAry.phone}}" ng-model="userphno" placeholder="{{userListAry.phone}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Country</label>
+						<input type="text" class="form-control" value="{{userListAry.country}}" ng-model="country" placeholder="{{userListAry.country}}">
+					</div>
+					<div class="col-sm-6">
+						<label>State</label>
+						<input type="text" class="form-control" value="{{userListAry.state}}" ng-model="state" placeholder="{{userListAry.state}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<label>City</label>
+						<input type="text" class="form-control" value="{{userListAry.city}}" ng-model="city" placeholder="{{userListAry.city}}">
+					</div>
+					<div class="col-sm-6">
+						<label>Pincode</label>
+						<input type="text" class="form-control" value="{{userListAry.pincode}}" ng-model="pincode" placeholder="{{userListAry.pincode}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<label>Address</label>
+						<textarea class="form-control" value="{{userListAry.address}}" ng-model="address" placeholder="{{userListAry.fulladdress}}"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-primary" >Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+
+
+		<form ng-show="showHideForm" method="get" accept-charset="utf-8" class="well" ng-submit="submitAddress(country,city,state,pincode,address)">
 			<h3>Delivery address</h3>
 			<div class="form-group userAddress">
 				<div class="row">
@@ -46,7 +101,7 @@
 					</div>
 				</div>
 			</div>
-		</form>
+		</form> 
 
 		</div>
 	</div>

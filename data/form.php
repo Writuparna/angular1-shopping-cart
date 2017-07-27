@@ -23,7 +23,7 @@ $password = $_POST['userpass'];
 $confirmpassword = $_POST['userconfirmpass'];*/
 
 
-$abc = "INSERT INTO user_table(name, phone, email, password, confirmpass) VALUES ('".$name."','".$phone."','".$email."','".$password."','".$confirmpassword."','".$country."','".$state."','".$city."','".$pincode."','".$address."')";
+$abc = "INSERT INTO user_table(name, phone, email, password, confirmpass, country, state, city, pincode, fulladdress) VALUES ('".$name."','".$phone."','".$email."','".$password."','".$confirmpassword."','".$country."','".$state."','".$city."','".$pincode."','".$address."')";
 
 
 

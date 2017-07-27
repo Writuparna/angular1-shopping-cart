@@ -16,4 +16,33 @@ angular.module('cartApp.signup.controller', []).controller('SignupController', [
 		$scope.userconfirmpass = "";
 	}
 
+
+	function loginAddressFn(country,city,state,pincode,address){
+
+		var defer = $q.defer();
+
+		$http({
+			url : 'data/form.php',
+			method : 'POST',
+			data :{
+				'country' : country,
+				'city' : city,
+				'state' : state,
+				'pincode' : pincode,
+				'address' : address
+			}
+		}).success(function(data){
+			defer.resolve(data);
+			console.log(data);
+		}).error(function(){
+			defer.reject('data can\'t be retrieved');
+		});
+		return defer.promise;
+	}
+
+
+
+
+
+
 }]);

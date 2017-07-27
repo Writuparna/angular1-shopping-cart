@@ -6,8 +6,7 @@ angular.module('cartApp.login.services', []).factory('loginFactory',['$http','$q
 
 	var loginObj = {
 		setLoginFormFn : setLoginFormFn,
-		fetchSingleDatatoServerFn : fetchSingleDatatoServerFn,
-		loginAddressFn : loginAddressFn
+		fetchSingleDatatoServerFn : fetchSingleDatatoServerFn
 	};
 
 		function setLoginFormFn(useremail,userpass){
@@ -59,29 +58,6 @@ angular.module('cartApp.login.services', []).factory('loginFactory',['$http','$q
 		return defer.promise;
 	}
 
-
-	function loginAddressFn(country,city,state,pincode,address){
-
-		var defer = $q.defer();
-
-		$http({
-			url : 'data/form.php',
-			method : 'POST',
-			data :{
-				'country' : country,
-				'city' : city,
-				'state' : state,
-				'pincode' : pincode,
-				'address' : address
-			}
-		}).success(function(data){
-			defer.resolve(data);
-			console.log(data);
-		}).error(function(){
-			defer.reject('data can\'t be retrieved');
-		});
-		return defer.promise;
-	}
 
 
 	return loginObj;

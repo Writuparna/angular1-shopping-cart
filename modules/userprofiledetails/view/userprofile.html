@@ -1,0 +1,53 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 ">
+		<h2>This is user profile page</h2>
+		
+		<div class="well">
+			<div class='row'>
+				<div class="col-sm-12">
+					<h3>Login detail</h3>
+				</div>
+				<ul class="col-sm-6">
+					<li><b>Name: </b> {{userListAry.name}}</li>
+					<li><b>Phone number: </b> {{userListAry.phone}}</li>
+					<li><b>Email: </b> {{userListAry.email}}</li>
+				</ul>
+			</div>
+		</div>
+		<form method="get" accept-charset="utf-8" class="well" ng-submit="submitAddress(country,city,state,pincode,address)">
+			<h3>Delivery address</h3>
+			<div class="form-group userAddress">
+				<div class="row">
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="country" placeholder="Country">
+					</div>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="state" placeholder="State">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="city" placeholder="City">
+					</div>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="pincode" placeholder="Pincode">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<textarea class="form-control" ng-model="address" placeholder="Full address"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-primary" >Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+
+		</div>
+	</div>
+</div>
