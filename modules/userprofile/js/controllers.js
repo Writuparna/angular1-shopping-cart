@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cartApp.userprofile.controller', []).controller('UserprofileController', ['$scope','loginFactory','signupFactory',function($scope,loginFactory,signupFactory){
+angular.module('cartApp.userprofile.controller', []).controller('UserprofileController', ['$scope','loginFactory','signupFactory','$rootScope',function($scope,loginFactory,signupFactory,$rootScope){
 
 	
 	$scope.userListAry = [];
@@ -11,12 +11,16 @@ angular.module('cartApp.userprofile.controller', []).controller('UserprofileCont
 		loginFactory.fetchSingleDatatoServerFn()
 			.then(function(singleUser){
 				console.log('singleUser',singleUser)
+				if(singleUser.status=="success"){					
+					$rootScope.loginShow = false;
+					$rootScope.logoutShow = true;	
+				}
 				$scope.userListAry = singleUser.data;
 				console.log('user profile controller data: '+JSON.stringify($scope.userListAry));
 				var showHideForm;
 				if($scope.userListAry.country==""){
 					$scope.showHideForm = true;
-				}else if($scope.userListAry.country==""){
+				}else if($scope.userListAry.country!=""){
 					$scope.showHideForm = false;					
 				}
 			},function(){
@@ -24,7 +28,7 @@ angular.module('cartApp.userprofile.controller', []).controller('UserprofileCont
 			})
 	}
 	$scope.userListFn();
-	console.log('userListAry: '+$scope.userListAry)
+	console.log('userListAry: '+$scope.userListAry);
 
 
 	$scope.submitAddress = function(country,city,state,pincode,address){
@@ -40,10 +44,10 @@ angular.module('cartApp.userprofile.controller', []).controller('UserprofileCont
 		$scope.showHideForm = false;
 	}
 
-	$scope.updateUser = function(username,userphno,country,city,state,pincode,address){
+	$scope.updateUser = function(userarray){
 		var useremail = $scope.userListAry.email;
-		signupFactory.updateUserFn(username,userphno,country,city,state,pincode,address,useremail);
-		console.log('useremail: '+useremail+' userphno: '+userphno+'username: '+username+' country: '+country+' city: '+city+' state: '+state+' pincode: '+pincode+' address: '+address)
+		signupFactory.updateUserFn(userarray,useremail);
+		console.log('useremail: '+JSON.stringify(userarray));
 		$scope.showUpdateForm = false;
 		$scope.hideUserDetail = true;
 		$scope.hideButton = false;

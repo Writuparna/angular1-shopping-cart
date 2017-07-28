@@ -44,7 +44,9 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 	}
 	$rootScope.loginShow = true;
 	$rootScope.logoutShow = false;	
+
 	
+
 	$scope.login = function(){	
 		loginFactory.fetchSingleDatatoServerFn()
 			.then(function(loginData){
@@ -54,11 +56,12 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 					console.log('hello1');
 				}else if(loginData.status == 'success'){
 					//$scope.logoutShow = true;	
+					$rootScope.logoutShow = true;	
 					console.log('hello2');
 				}
 			},function(){
 				console.log('login data cant retrieved');
-			})
+		})
 	}
 	$scope.logout =function(){
 		$rootScope.loginShow = true;
@@ -67,6 +70,7 @@ angular.module('cartApp.header.controller', []).controller('HeaderController', [
 			.then(function(loginData){
 				if(loginData.status=='success'){
 					localStorage.removeItem('userid');
+					$rootScope.logoutShow = false;	
 					$state.go('home');		
 				}
 			},function(){

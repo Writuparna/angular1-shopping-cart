@@ -17,49 +17,49 @@
 						{{userListAry.fulladdress}}<br>
 						{{userListAry.country}}<br>
 						{{userListAry.state}}<br>
-						{{userListAry.city}}: {{userListAry.pincode}}<br>
+						{{userListAry.city}} {{userListAry.pincode}}<br>
 					</li>
 				</ul>
 			</div>
 		</div>
 		
-		<form ng-show="showUpdateForm" method="get" accept-charset="utf-8" class="well" ng-submit="updateUser(username,userphno,country,city,state,pincode,address)">
+		<form ng-show="showUpdateForm" method="get" accept-charset="utf-8" class="well" ng-submit="updateUser(userListAry)">
 			<h3>Update user detail</h3>
 			<div class="form-group userAddress">
 				<div class="row">
 					<div class="col-sm-6">
 						<label>Name</label>
-						<input type="text" class="form-control" value="{{userListAry.name}}" ng-model="username" placeholder="{{userListAry.name}}">
+						<input type="text" class="form-control" ng-model="userListAry.name">
 					</div>
 					<div class="col-sm-6">
 						<label>Phone number</label>
-						<input type="tel" class="form-control" value="{{userListAry.phone}}" ng-model="userphno" placeholder="{{userListAry.phone}}">
+						<input type="tel" class="form-control" ng-model="userListAry.phone" >
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
 						<label>Country</label>
-						<input type="text" class="form-control" value="{{userListAry.country}}" ng-model="country" placeholder="{{userListAry.country}}">
+						<input type="text" class="form-control" ng-model="userListAry.country">
 					</div>
 					<div class="col-sm-6">
 						<label>State</label>
-						<input type="text" class="form-control" value="{{userListAry.state}}" ng-model="state" placeholder="{{userListAry.state}}">
+						<input type="text" class="form-control" ng-model="userListAry.state">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
 						<label>City</label>
-						<input type="text" class="form-control" value="{{userListAry.city}}" ng-model="city" placeholder="{{userListAry.city}}">
+						<input type="text" class="form-control" ng-model="userListAry.city">
 					</div>
 					<div class="col-sm-6">
 						<label>Pincode</label>
-						<input type="text" class="form-control" value="{{userListAry.pincode}}" ng-model="pincode" placeholder="{{userListAry.pincode}}">
+						<input type="text" class="form-control" ng-model="userListAry.pincode">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
 						<label>Address</label>
-						<textarea class="form-control" value="{{userListAry.address}}" ng-model="address" placeholder="{{userListAry.fulladdress}}"></textarea>
+						<textarea class="form-control" ng-model="userListAry.fulladdress"></textarea>
 					</div>
 				</div>
 				<div class="row">

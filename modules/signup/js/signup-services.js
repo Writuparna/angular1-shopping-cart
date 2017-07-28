@@ -88,7 +88,7 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
 		return defer.promise;
 	}
 
- 	function updateUserFn(username,userphno,country,city,state,pincode,address,useremail){
+ 	function updateUserFn(userarray,useremail){
  		
  		var defer = $q.defer();
  		$http({
@@ -96,13 +96,13 @@ angular.module('cartApp.signup.services', []).factory('signupFactory',['$http','
  			method : 'PUT',
  			data : {
 				'useremail' : useremail,
-				'username' : username,
-				'userphno' : userphno,
-				'country' : country,
-				'city' : city,
-				'state' : state,
-				'pincode' : pincode,
-				'address' : address 				
+				'username' : userarray.name,
+				'userphno' : userarray.phone,
+				'country' : userarray.country,
+				'city' : userarray.city,
+				'state' : userarray.state,
+				'pincode' : userarray.pincode,
+				'address' : userarray.fulladdress 				
  			}
  		}).success(function(data){
  			defer.resolve(data);
