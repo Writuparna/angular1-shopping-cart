@@ -24,7 +24,10 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		setMoveWishToCartFn : setMoveWishToCartFn,
 		removeWishItemFn : removeWishItemFn,
 		productInWishlistFn : productInWishlistFn,
-		ngcalssClickId	: ngcalssClickId
+		ngcalssClickId	: ngcalssClickId,
+		setGrandTotal : setGrandTotal,
+		getGrandTotal : getGrandTotal,
+		fetchProdataFromdb : fetchProdataFromdb
 		//productIn : false
 	};
 
@@ -247,6 +250,59 @@ angular.module('cartApp.service',[]).factory('productsFactory',['$q','$http','$r
 		//console.log('search result: '+ productsObj.searchResult);
 		return productsObj.searchResult;
 	}
+
+/*grand total cart to user profile cart value to database*/
+
+	function setGrandTotal(param,cartaray){
+		productsObj.grandTotalParam = param;
+		//return productsObj.grandTotalParam;
+		for (var i = 0; i < cartaray.length; i++) {
+			console.log('cart array: '+JSON.stringify(cartaray[i]));
+			var defer = $q.defer();
+			$http({
+				url : 'data/addtocart.php',
+				method : 'POST',
+				data : {
+					"p_id" : cartaray[i].p_id,
+					"p_name" : cartaray[i].p_name,
+					"p_originalprice" : cartaray[i].p_originalprice,
+					"proQty" : cartaray[i].proQty,
+					"totalPrice" : cartaray[i].totalPrice,
+				}
+			}).success(function(data,status,headers,config){
+				alert(data);
+				productsObj.fetchProdataFromdb()
+				defer.resolve(data);
+			}).error(function(){
+				defer.reject('data can\'t be retained');
+			});
+		};
+	}
+
+	function getGrandTotal(){
+		console.log('grand total param: '+productsObj.grandTotalParam);
+		return productsObj.grandTotalParam;
+	}
+
+
+/*fetch data from db*/
+
+	function fetchProdataFromdb(){
+		var defer = $q.defer();
+		$http({
+			url : 'data/fetchProfrmdb.php',
+			method : 'GET',
+		}).success(function(data){
+			console.log('cart data from db: '+ JSON.stringify(data));
+			defer.resolve(data);
+		}).error(function(){
+			defer.reject('data can\'t be retained');
+		})
+	}
+
+
+
+
 
 	return productsObj;
 

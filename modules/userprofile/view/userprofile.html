@@ -103,6 +103,43 @@
 			</div>
 		</form> 
 
+		<div class="">
+			<h3>Order detail</h3>	
+			<table class="table tableProducts">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>image</th>
+				<th>name</th>
+				<th>quantity</th>
+				<th>price</th>
+				<th>total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="product in cartAry">
+				<td>{{product.p_id}}</td>
+				<td><img src="img/products/{{product.p_image}}" alt=""></td>
+				<td>{{product.p_name}}</td>
+				<td>Quantity:{{newQtyScope}}</td>
+				<td>{{product.p_originalprice}}</td>
+				<td><b>{{product.totalPrice}}</b></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="4" >grand total</td>
+				<td colspan="2"><h3>{{grandTotal | currency}}</h3></td>
+			</tr>
+			<tr>
+				<td colspan="6">
+					<button type="button" ng-click="paynow()" >Pay now</button>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+		</div>
+
 		</div>
 	</div>
 </div>

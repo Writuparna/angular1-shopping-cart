@@ -3,7 +3,7 @@
 $connect = mysqli_connect('localhost','root','','signup_form');
 $output = array();
 
-$query = "SELECT * FROM user_table";
+$query = "SELECT * FROM cart_table";
 
 $result = mysqli_query($connect,$query);
 

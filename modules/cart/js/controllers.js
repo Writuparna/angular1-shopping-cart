@@ -3,9 +3,7 @@
 angular.module('cartApp.cart.controller', []).controller('CartController', ['$scope','productsFactory','$state',function($scope,productsFactory,$state){
 
 	$scope.cartAry = productsFactory.getCartObjFn();
-	//$scope.wishToCartAry = productsFactory.getMoveWishToCartFn()
 	console.log('cartAry: '+JSON.stringify($scope.cartAry));
-	//console.log('wishToCartAry: '+JSON.stringify($scope.wishToCartAry));
 
 	$scope.grandTotal = 0;
 	for (var i = 0; i < $scope.cartAry.length; i++) {
@@ -23,35 +21,35 @@ angular.module('cartApp.cart.controller', []).controller('CartController', ['$sc
 		}
 	}
 
-$scope.removeItem = function($index){
-	$scope.cartAry.splice($index,1);
-	$scope.grandTotal=0;
+	$scope.removeItem = function($index){
+		$scope.cartAry.splice($index,1);
+		$scope.grandTotal=0;
 
-	for (var i = 0; i < $scope.cartAry.length; i++) {
-		$scope.grandTotal = $scope.grandTotal + $scope.cartAry[i].totalPrice;
+		for (var i = 0; i < $scope.cartAry.length; i++) {
+			$scope.grandTotal = $scope.grandTotal + $scope.cartAry[i].totalPrice;
+		}
+		productsFactory.removeCartItemFn();
+		console.log('selectedProAry: '+ JSON.stringify(productsFactory.selectedProAry));
+
 	}
-	productsFactory.removeCartItemFn();
-	console.log('selectedProAry: '+ JSON.stringify(productsFactory.selectedProAry));
+	 $scope.cartToWishList = function($index){
+		var itemMovedToWishlist = productsFactory.selectedProAry[$index].p_id;
 
-}
- $scope.cartToWishList = function($index){
-	var itemMovedToWishlist = productsFactory.selectedProAry[$index].p_id;
-
-	$scope.cartAry.splice($index,1);
-	$scope.grandTotal=0;
-	for (var i = 0; i < $scope.cartAry.length; i++) {
-		$scope.grandTotal = $scope.grandTotal + $scope.cartAry[i].totalPrice;
+		$scope.cartAry.splice($index,1);
+		$scope.grandTotal=0;
+		for (var i = 0; i < $scope.cartAry.length; i++) {
+			$scope.grandTotal = $scope.grandTotal + $scope.cartAry[i].totalPrice;
+		}
+		console.log(itemMovedToWishlist);
+		productsFactory.setCartToWishFn(itemMovedToWishlist);
 	}
 
-	console.log(itemMovedToWishlist);
-	productsFactory.setCartToWishFn(itemMovedToWishlist);
-}
-
-$scope.checkOut =function(){
-	console.log('abc');
-	$state.go('login');
-}
-
+	$scope.checkOut =function(grandTotal){
+		$state.go('login');
+		var cartAry =$scope.cartAry;
+		console.log('grand total: '+ grandTotal);
+		productsFactory.setGrandTotal(grandTotal,cartAry);
+	}
 			
 
 }]);
